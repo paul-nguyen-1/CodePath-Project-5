@@ -73,3 +73,65 @@
 .logo:active {
   transform: scale(0.9);
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eventContainer {
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.eventRow {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.eventTitles {
+  font-weight: bold;
+  background-color: #919191;
+}
+
+.eventColumn {
+  flex-basis: 20%;
+}
+
+.eventItems:nth-child(odd) {
+  background-color: #595757;
+}
+
+.eventItems:hover {
+  background-color: #939393;
+}
+
+.items {
+  text-align: center;
+}
+
+a.items {
+  display: block;
+  text-decoration: none;
+  color: #0077c2;
+}
+
+a.items:hover {
+  color: #005ea3;
+}
+
+@media screen and (max-width: 768px) {
+  .eventColumn {
+    flex-basis: 100%;
+  }
+  .eventRow {
+    flex-wrap: wrap;
+  }
+}
