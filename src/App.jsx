@@ -13,10 +13,12 @@ function App() {
   const AMOUNT_PER_PAGE = "&per_page=15";
   const API_KEY = import.meta.env.VITE_API_KEY;
   const CITY_ZIP = "&postal_code=75201";
+
   //Enable search filter on nav
   const handleSearchClick = () => {
     setSearchFilter(!searchFilter);
   };
+
   //Call and access API for events
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -46,7 +48,7 @@ function App() {
   const average_price =
     num_events > 0 ? (total_price / num_events).toFixed(2) : 0;
 
-  //Return lowest price in events
+  //Return lowest price for all events in city
   let lowestPrice = Infinity;
   if (list) {
     for (let event of list) {
@@ -60,7 +62,8 @@ function App() {
       }
     }
   }
-  //Return highest price in events
+
+  //Return highest price for all events in city
   let highestPrice = -Infinity;
   if (list) {
     for (let event of list) {

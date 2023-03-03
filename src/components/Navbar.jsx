@@ -1,9 +1,26 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 
 function Navbar({ handleSearchClick, searchFilter }) {
+  const [navbar, setNavbar] = useState(false);
+
+  //blur effect for navbar when scrolling
+  const changeBackground = () => {
+    console.log("Changebackground called");
+    if (window.scrollY >= 20) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", changeBackground);
+  }, []);
+
   return (
-    <div className="navbar">
+    <div className={navbar ? "navbarActive" : "navbar"}>
       <div className="logo">
         <h2>NeetSeat 🎟</h2>
       </div>
