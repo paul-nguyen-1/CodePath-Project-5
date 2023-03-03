@@ -4,7 +4,9 @@
   padding: 2rem;
   text-align: center;
 } */
-
+body::-webkit-scrollbar {
+  display: none;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -47,16 +49,16 @@
   align-items: center;
   justify-content: space-between;
   height: 10vh;
+  width: 100vw;
   background-color: rgba(76, 76, 77, 0.506);
   overflow: hidden;
-  padding: 0px 10px;
+  padding: 0 1rem;
 }
 
 .navLinks {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding-right: -5px;
+  justify-content: space-evenly;
   overflow: hidden;
 }
 
@@ -78,6 +80,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+}
+
+.statsContainer {
+  display: flex;
+  width: 60%;
+  margin-top: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat {
+  width: 100vw;
+  height: 150px;
+  box-sizing: border-box;
+  border: 2px solid white;
+  border-radius: 20px;
+  margin: 0px 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.stat:hover {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+.stat:active {
+  transform: scale(1);
 }
 
 .eventContainer {
@@ -102,6 +133,7 @@
 }
 
 .eventColumn {
+  margin: 0 5px;
   flex-basis: 20%;
 }
 
@@ -133,5 +165,27 @@ a.items:hover {
   }
   .eventRow {
     flex-wrap: wrap;
+  }
+  .navbar {
+    justify-content: space-around;
+    padding: 0;
+  }
+
+  .navLinks {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow: hidden;
+    width: auto;
+    margin: 0;
+  }
+
+  .searchFilter {
+    display: block;
+    margin-right: 1rem;
+  }
+
+  .statsContainer {
+    width: 100%;
   }
 }

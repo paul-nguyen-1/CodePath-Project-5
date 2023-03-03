@@ -11,7 +11,7 @@ function Navbar({ handleSearchClick, searchFilter }) {
         {searchFilter && (
           <input
             type="text"
-            placeholder="Search for Performers"
+            placeholder="Search for Events"
             value={null}
           ></input>
         )}
