@@ -7,6 +7,7 @@ function App() {
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
   const [eventContent, setEventContent] = useState([]);
+  const [navbar, setNavbar] = useState(false);
 
   //URL Variables
   const BASE_URL = "https://api.seatgeek.com/2/events";
@@ -17,6 +18,7 @@ function App() {
   //Enable search filter on nav
   const handleSearchClick = () => {
     setSearchFilter(!searchFilter);
+    setNavbar(false);
   };
 
   //Call and access API for events
@@ -78,6 +80,8 @@ function App() {
       <Navbar
         handleSearchClick={handleSearchClick}
         searchFilter={searchFilter}
+        navbar={navbar}
+        setNavbar={setNavbar}
       />
 
       <div className="statsContainer">

@@ -2,8 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../App.css";
 
-function Navbar({ handleSearchClick, searchFilter }) {
-  const [navbar, setNavbar] = useState(false);
+function Navbar({ handleSearchClick, searchFilter, navbar, setNavbar }) {
+  
 
   //blur effect for navbar when scrolling
   const changeBackground = () => {
@@ -15,16 +15,16 @@ function Navbar({ handleSearchClick, searchFilter }) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("scroll", changeBackground);
   }, []);
 
   return (
     <div className={navbar ? "navbarActive" : "navbar"}>
-      <div className="logo">
+      <div className={navbar ? "logoActive" : "logo"}>
         <h2>NeetSeat 🎟</h2>
       </div>
-      <div className="navLinks">
+      <div className={navbar ? "navLinksActive" : "navLinks"}>
         {searchFilter && (
           <input
             type="text"

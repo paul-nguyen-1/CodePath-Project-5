@@ -55,8 +55,8 @@ body::-webkit-scrollbar {
   padding: 0 1rem;
 }
 
-.navbarActive{
- position: fixed;
+.navbarActive {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,10 +74,26 @@ body::-webkit-scrollbar {
   overflow: hidden;
 }
 
+.navLinksActive {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  opacity: 0.4;
+  overflow: hidden;
+}
+
 .logo {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.logoActive {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.4;
+  margin-left: 25px;
 }
 
 .logo:hover {
