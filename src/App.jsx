@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import Events from "./components/Events";
 import Navbar from "./components/Navbar";
 
 function App() {
   const [searchFilter, setSearchFilter] = useState(false);
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
-  const [eventContent, setEventContent] = useState([]);
   const [navbar, setNavbar] = useState(false);
+  const [zipcode, setZipcode] = useState('75201')
 
   //URL Variables
-  const BASE_URL = "https://api.seatgeek.com/2/events";
-  const AMOUNT_PER_PAGE = "&per_page=15";
+  const BASE_URL = "https://api.seatgeek.com/2/events?";
+  const AMOUNT_PER_PAGE = "&per_page=50";
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const CITY_ZIP = "&postal_code=75201";
+  const CITY_ZIP = "&postal_code=";
 
   //Enable search filter on nav
   const handleSearchClick = () => {
@@ -25,7 +26,7 @@ function App() {
   useEffect(() => {
     const fetchAllEvents = async () => {
       const response = await fetch(
-        `${BASE_URL}${API_KEY}${AMOUNT_PER_PAGE}${CITY_ZIP}`
+        `${BASE_URL}${API_KEY}${AMOUNT_PER_PAGE}${CITY_ZIP}${zipcode}`
       );
       const json = await response.json();
       console.log(json);
@@ -57,10 +58,10 @@ function App() {
       //Make sure all events list their price and return the min value
       if (
         event.stats &&
-        event.stats.lowest_price != null &&
-        event.stats.lowest_price < lowestPrice
+        event.stats.lowest_sg_base_price != null &&
+        event.stats.lowest_sg_base_price < lowestPrice
       ) {
-        lowestPrice = event.stats.lowest_price;
+        lowestPrice = event.stats.lowest_sg_base_price;
       }
     }
   }
@@ -107,33 +108,23 @@ function App() {
           <div className="eventColumn">Performance</div>
           <div className="eventColumn">Location</div>
           <div className="eventColumn">Venue</div>
-          <div className="eventColumn">Average Price</div>
+          <div className="eventColumn">Lowest Price</div>
           <div className="eventColumn">Tickets</div>
         </div>
 
         {list &&
           Object.entries(list).map(([event]) =>
-            list[event].stats.average_price ? (
-              <div className="eventRow eventItems" key={event}>
-                <div className="eventColumn">
-                  {list[event].type.toUpperCase().replace(/_/g, " ")}
-                </div>
-                <div className="eventColumn">
-                  {new Date(list[event].datetime_utc).toLocaleDateString()}
-                </div>
-                <div className="eventColumn">{list[event].title}</div>
-
-                <div className="eventColumn">
-                  {list[event].venue.display_location}
-                </div>
-                <div className="eventColumn">{list[event].venue.name}</div>
-                <div className="eventColumn">
-                  ${list[event].stats.average_price}
-                </div>
-                <div className="eventColumn">
-                  <a href={list[event].url}>Tickets</a>
-                </div>
-              </div>
+            list[event] ? (
+              <Events
+                event={list[event].type.toUpperCase().replace(/_/g, " ")}
+                date={new Date(list[event].datetime_utc).toLocaleDateString()}
+                title={list[event].title}
+                location={list[event].venue.display_location}
+                venue={list[event].venue.name}
+                price={list[event].stats.lowest_sg_base_price}
+                url={list[event].url}
+                id={list[event].id}
+              />
             ) : null
           )}
       </div>

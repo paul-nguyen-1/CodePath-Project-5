@@ -165,7 +165,7 @@ body::-webkit-scrollbar {
   flex-basis: 20%;
 }
 
-.eventItems:nth-child(odd) {
+.eventItems:nth-child(even) {
   background-color: #595757;
 }
 
