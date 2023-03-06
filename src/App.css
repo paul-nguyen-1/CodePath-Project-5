@@ -217,3 +217,10 @@ a.items:hover {
     width: 100%;
   }
 }
+
+.filterContainer{
+  display: flex;
+ align-items: flex-end;
+justify-content: center;
+ flex-flow: row wrap;
+}
