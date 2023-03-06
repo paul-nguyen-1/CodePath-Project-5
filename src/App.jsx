@@ -2,17 +2,22 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Events from "./components/Events";
 import Navbar from "./components/Navbar";
+import { Input } from "semantic-ui-react";
 
 function App() {
   const [searchFilter, setSearchFilter] = useState(false);
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
   const [navbar, setNavbar] = useState(false);
-  const [zipcode, setZipcode] = useState('75201')
+  const [zipcode, setZipcode] = useState("75201");
+
+  //Filter
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   //URL Variables
   const BASE_URL = "https://api.seatgeek.com/2/events?";
-  const AMOUNT_PER_PAGE = "&per_page=50";
+  const AMOUNT_PER_PAGE = "&per_page=10";
   const API_KEY = import.meta.env.VITE_API_KEY;
   const CITY_ZIP = "&postal_code=";
 
@@ -29,7 +34,7 @@ function App() {
         `${BASE_URL}${API_KEY}${AMOUNT_PER_PAGE}${CITY_ZIP}${zipcode}`
       );
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
       setMeta(json.meta);
       setList(json.events);
     };
@@ -76,6 +81,23 @@ function App() {
     }
   }
 
+  //Filter search
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue);
+    if (searchValue !== "") {
+      console.log(list)
+      const filteredData = Object.keys(list).filter((event) =>
+        Object.values(list[event].title)
+          .join("")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
+      );
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(Object.keys(list));
+    }
+  };
+
   return (
     <div className="App">
       <Navbar
@@ -83,6 +105,7 @@ function App() {
         searchFilter={searchFilter}
         navbar={navbar}
         setNavbar={setNavbar}
+        searchItems={searchItems}
       />
 
       <div className="statsContainer">
@@ -101,6 +124,13 @@ function App() {
           </h3>
         </div>
       </div>
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(inputString) => searchItems(inputString.target.value)}
+        style={{ marginTop: "25px" }}
+      />
+
       <div className="eventContainer">
         <div className="eventRow eventTitles">
           <div className="eventColumn">Event Type</div>
@@ -111,11 +141,43 @@ function App() {
           <div className="eventColumn">Lowest Price</div>
           <div className="eventColumn">Tickets</div>
         </div>
-
-        {list &&
+        {searchInput.length > 0
+          ? filteredResults.map((event) =>
+              list[event] ? (
+                <Events
+                  key={event}
+                  event={list[event].type.toUpperCase().replace(/_/g, " ")}
+                  date={new Date(list[event].datetime_utc).toLocaleDateString()}
+                  title={list[event].title}
+                  location={list[event].venue.display_location}
+                  venue={list[event].venue.name}
+                  price={list[event].stats.lowest_sg_base_price}
+                  url={list[event].url}
+                  id={list[event].id}
+                />
+              ) : null
+            )
+          : list &&
+            Object.entries(list).map(([event]) =>
+              list[event] ? (
+                <Events
+                  key={event}
+                  event={list[event].type.toUpperCase().replace(/_/g, " ")}
+                  date={new Date(list[event].datetime_utc).toLocaleDateString()}
+                  title={list[event].title}
+                  location={list[event].venue.display_location}
+                  venue={list[event].venue.name}
+                  price={list[event].stats.lowest_sg_base_price}
+                  url={list[event].url}
+                  id={list[event].id}
+                />
+              ) : null
+            )}
+        {/* {list &&
           Object.entries(list).map(([event]) =>
             list[event] ? (
               <Events
+                key={event}
                 event={list[event].type.toUpperCase().replace(/_/g, " ")}
                 date={new Date(list[event].datetime_utc).toLocaleDateString()}
                 title={list[event].title}
@@ -126,7 +188,7 @@ function App() {
                 id={list[event].id}
               />
             ) : null
-          )}
+          )} */}
       </div>
     </div>
   );

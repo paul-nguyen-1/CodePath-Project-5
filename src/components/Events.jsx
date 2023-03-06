@@ -12,7 +12,8 @@ function Events({ event, date, title, location, venue, price, url, id }) {
     const searchEvents = async () => {
       const response = await fetch(`${BASE_URL}${API_KEY}`);
       const json = await response.json();
-      setPerformance(json);
+      // console.log(json)
+      setPerformance(json.events);
     };
     searchEvents().catch(console.error);
   }, [id]);
@@ -26,7 +27,9 @@ function Events({ event, date, title, location, venue, price, url, id }) {
           <div className="eventColumn">{title}</div>
           <div className="eventColumn">{location}</div>
           <div className="eventColumn">{venue}</div>
-          <div className="eventColumn">{price == null ? 'Price currently unavailable' : `$${price}`}</div>
+          <div className="eventColumn">
+            {price == null ? "Sold Out / Unavailable" : `$${price}`}
+          </div>
           <div className="eventColumn">
             <a href={url}>Tickets</a>
           </div>

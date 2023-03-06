@@ -2,12 +2,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../App.css";
 
-function Navbar({ handleSearchClick, searchFilter, navbar, setNavbar }) {
-  
-
+function Navbar({
+  handleSearchClick,
+  searchFilter,
+  navbar,
+  setNavbar,
+  searchItems,
+}) {
   //blur effect for navbar when scrolling
   const changeBackground = () => {
-    console.log("Changebackground called");
+    // console.log("Changebackground called");
     if (window.scrollY >= 20) {
       setNavbar(true);
     } else {
@@ -30,6 +34,7 @@ function Navbar({ handleSearchClick, searchFilter, navbar, setNavbar }) {
             type="text"
             placeholder="Search for Events"
             value={null}
+            onChange={(inputString) => searchItems(inputString.target.value)}
           ></input>
         )}
         <button onClick={handleSearchClick}>🔍 Search</button>
