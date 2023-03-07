@@ -127,6 +127,13 @@ function App() {
     setScore(!score);
   };
 
+  const handleTicketPrice = (e) => {
+    const value = e.target.value;
+    setTimeout(() => {
+      setLowestTicket(value);
+    }, 200);
+  };
+
   return (
     <div className="App">
       <Navbar
@@ -164,8 +171,8 @@ function App() {
               value={lowestTicket}
               min={lowestPrice}
               max={1000}
-              step={0.1}
-              onChange={(e) => setLowestTicket(e.target.value)}
+              step={0.0001}
+              onChange={handleTicketPrice}
             />
             <span>${1000}</span>
           </div>
