@@ -46,7 +46,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [eventDate, lowestTicket]);
+  }, [eventDate, lowestTicket, city]);
 
   // Call and access API for sorting popularity on change
   useEffect(() => {
@@ -58,7 +58,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [score, lowestTicket]);
+  }, [score, lowestTicket, city]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -117,6 +117,9 @@ function App() {
     }
   };
 
+  //Filter search for cities
+  const searchCity = () => {};
+
   //Changes date to either the closest date or furthest
   const handleEventDate = () => {
     setEventDate(!eventDate);
@@ -134,6 +137,15 @@ function App() {
     }, 200);
   };
 
+  const handleCitySubmit = (e) => {
+    e.preventDefault();
+    e.target.reset();
+  };
+
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
+  };
+
   return (
     <div className="App">
       <Navbar
@@ -146,7 +158,7 @@ function App() {
 
       <div className="statsContainer">
         <div className="stat">
-          <h2>{city} Events:</h2>
+          <h2>Live Events:</h2>
           <h3>{meta && meta.total}</h3>
         </div>
         <div className="stat">
@@ -183,11 +195,13 @@ function App() {
         <button onClick={handleScore}>
           {score ? "Least Popular" : "Most Popular"}
         </button>
-        <Input
-          type="text"
-          placeholder="Enter city here"
-          onChange={(inputString) => searchTitle(inputString.target.value)}
-        />
+        <form onSubmit={handleCitySubmit}>
+          <Input
+            type="text"
+            placeholder="Enter city here"
+            onChange={handleCityChange}
+          />
+        </form>
         <button>Search City!</button>
       </div>
 
