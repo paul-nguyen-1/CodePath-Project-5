@@ -9,20 +9,21 @@ function App() {
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
   const [navbar, setNavbar] = useState(false);
-  const [zipcode, setZipcode] = useState("75201");
+  const [city, setCity] = useState("Dallas");
   const [eventDate, setEventDate] = useState(true);
   const [score, setScore] = useState(true);
+  const [lowestTicket, setLowestTicket] = useState(0);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
   //URL Variables
-  const BASE_URL = "https://api.seatgeek.com/2/events?";
-  const AMOUNT_PER_PAGE = `&per_page=500`;
+  const BASE_URL = "https://api.seatgeek.com/2/events?venue.city=";
+  const AMOUNT_PER_PAGE = `&per_page=700`;
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const CITY_ZIP = "&postal_code=";
   const ASSERT_TICKETS = "&listing_count.gt=0";
+  const ASSERT_TICKET_PRICING = `&lowest_price.gt=${lowestTicket}`;
   const eventDateOrder = eventDate ? "asc" : "desc";
   const scoreOrder = score ? "asc" : "desc";
   const EVENT_DATE = `&sort=datetime_utc.${eventDateOrder}`;
@@ -34,33 +35,30 @@ function App() {
     setNavbar(false);
   };
 
-  //Call and access API for events
+  //Call and access API for sorting events on change
   useEffect(() => {
     const fetchAllEvents = async () => {
       const response = await fetch(
-        `${BASE_URL}${API_KEY}${AMOUNT_PER_PAGE}${CITY_ZIP}${zipcode}${ASSERT_TICKETS}${EVENT_DATE}`
+        `${BASE_URL}${city}&${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${EVENT_DATE}`
       );
       const json = await response.json();
-      console.log(json);
       setMeta(json.meta);
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [eventDate]);
+  }, [eventDate, lowestTicket]);
 
-  //Call and access API for popularity
+  // Call and access API for sorting popularity on change
   useEffect(() => {
     const fetchAllEvents = async () => {
       const response = await fetch(
-        `${BASE_URL}${API_KEY}${AMOUNT_PER_PAGE}${CITY_ZIP}${zipcode}${ASSERT_TICKETS}${SCORE_ORDER}`
+        `${BASE_URL}${city}&${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_ORDER}`
       );
       const json = await response.json();
-      console.log(json);
-      setMeta(json.meta);
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [score]);
+  }, [score, lowestTicket]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -141,7 +139,7 @@ function App() {
 
       <div className="statsContainer">
         <div className="stat">
-          <h2>Dallas Events:</h2>
+          <h2>{city} Events:</h2>
           <h3>{meta && meta.total}</h3>
         </div>
         <div className="stat">
@@ -155,21 +153,35 @@ function App() {
           </h3>
         </div>
       </div>
+
       <div className="filterContainer">
-        <button>Events</button>
+        <div className="filterItem">
+          <h2>Filter by price</h2>
+          <div className="inputItem">
+            <span>${lowestPrice}</span>
+            <input
+              type="range"
+              value={lowestTicket}
+              min={lowestPrice}
+              max={1000}
+              step={0.1}
+              onChange={(e) => setLowestTicket(e.target.value)}
+            />
+            <span>${1000}</span>
+          </div>
+        </div>
         <button onClick={handleEventDate}>
           {eventDate ? "Most Recent" : "Plan in Advance!"}
         </button>
         <button onClick={handleScore}>
           {score ? "Least Popular" : "Most Popular"}
         </button>
-        <button>City</button>
         <Input
           type="text"
-          placeholder="Search..."
+          placeholder="Enter city here"
           onChange={(inputString) => searchTitle(inputString.target.value)}
-          style={{ marginTop: "25px" }}
         />
+        <button>Search City!</button>
       </div>
 
       <div className="eventContainer">

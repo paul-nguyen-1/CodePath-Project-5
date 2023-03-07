@@ -218,9 +218,10 @@ a.items:hover {
   }
 }
 
-.filterContainer{
+.filterContainer {
   display: flex;
- align-items: flex-end;
-justify-content: center;
- flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+margin-top: 25px;
 }
