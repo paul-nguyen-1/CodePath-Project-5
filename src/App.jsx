@@ -176,7 +176,7 @@ function App() {
         <button onClick={handleEventDate}>
           {eventDate ? "Most Recent" : "Plan in Advance!"}
         </button>
-        <button onClick={handleScore}>
+        <button onClick={handleScore} style={{marginRight:"25px"}}>
           {score ? "Least Popular" : "Most Popular"}
         </button>
         <Input
@@ -191,7 +191,7 @@ function App() {
         />
 
         <input
-          style={{ marginLeft: "20px" }}
+        className="cityInput"
           type="text"
           placeholder="Enter city here"
           onChange={handleCityChange}
@@ -206,7 +206,7 @@ function App() {
           <div className="eventColumn">Location</div>
           <div className="eventColumn">Venue</div>
           <div className="eventColumn">Lowest Price</div>
-          <div className="eventColumn">Tickets</div>
+          <div className="eventColumn"></div>
         </div>
         {searchInput.length > 0
           ? filteredResults.map((event) =>

@@ -236,3 +236,40 @@ a.items:hover {
   cursor: pointer;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.36), 0 1px 1px rgba(0, 0, 0, 0.23);
 }
+
+.cityInput{
+  margin-left: 25px;
+}
+
+@media (max-width: 768px) {
+  .filterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterContainer > * {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .my-range-input {
+    width: 100%;
+  }
+
+  button, input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .my-range-input::placeholder {
+    text-align: center;
+  }
+
+  .eventTitles{
+    display: none
+  }
+}
