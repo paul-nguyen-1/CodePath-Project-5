@@ -183,7 +183,7 @@ function App() {
           type="number"
           value={lowestTicket}
           min={0}
-          max={1000}
+          max={highestPrice}
           step={5}
           onChange={handleTicketPrice}
           placeholder="Price Filter"
