@@ -12,7 +12,7 @@ function App() {
   const [city, setCity] = useState("Dallas");
   const [eventDate, setEventDate] = useState(true);
   const [score, setScore] = useState(true);
-  const [lowestTicket, setLowestTicket] = useState(0);
+  const [lowestTicket, setLowestTicket] = useState(1);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -22,7 +22,6 @@ function App() {
   const BASE_URL = "https://api.seatgeek.com/2/events?venue.city=";
   const AMOUNT_PER_PAGE = `&per_page=700`;
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const ASSERT_TICKETS = "&listing_count.gt=0";
   const ASSERT_TICKET_PRICING = `&lowest_price.gt=${lowestTicket}`;
   const eventDateOrder = eventDate ? "asc" : "desc";
   const scoreOrder = score ? "asc" : "desc";
@@ -42,6 +41,7 @@ function App() {
         `${BASE_URL}${city}&${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${EVENT_DATE}`
       );
       const json = await response.json();
+      // console.log(json.events)
       setMeta(json.meta);
       setList(json.events);
     };
@@ -66,8 +66,11 @@ function App() {
   //List not iterable so grab event from list first
   if (list) {
     for (let event of list) {
-      if (event.stats.average_price) {
-        total_price += event.stats.average_price;
+      if (
+        event.stats.lowest_sg_base_price != null &&
+        event.stats.lowest_sg_base_price
+      ) {
+        total_price += event.stats.lowest_sg_base_price;
         num_events++;
       }
     }
@@ -94,8 +97,12 @@ function App() {
   let highestPrice = -Infinity;
   if (list) {
     for (let event of list) {
-      if (event.stats.highest_price > highestPrice) {
-        highestPrice = event.stats.highest_price;
+      if (
+        event.stats &&
+        event.stats.lowest_sg_base_price != null &&
+        event.stats.lowest_sg_base_price > highestPrice
+      ) {
+        highestPrice = event.stats.lowest_sg_base_price;
       }
     }
   }
@@ -117,9 +124,6 @@ function App() {
     }
   };
 
-  //Filter search for cities
-  const searchCity = () => {};
-
   //Changes date to either the closest date or furthest
   const handleEventDate = () => {
     setEventDate(!eventDate);
@@ -134,12 +138,7 @@ function App() {
     const value = e.target.value;
     setTimeout(() => {
       setLowestTicket(value);
-    }, 200);
-  };
-
-  const handleCitySubmit = (e) => {
-    e.preventDefault();
-    e.target.reset();
+    }, 300);
   };
 
   const handleCityChange = (e) => {
@@ -159,50 +158,44 @@ function App() {
       <div className="statsContainer">
         <div className="stat">
           <h2>Live Events:</h2>
-          <h3>{meta && meta.total}</h3>
+          <h3>{meta && meta.total ? meta.total : "Loading..."}</h3>
         </div>
         <div className="stat">
           <h2>Average Price:</h2>
-          <h3>${average_price}</h3>
+          <h3>{average_price ? `$${average_price}` : "Loading..."}</h3>
         </div>
         <div className="stat">
           <h2>Price Range:</h2>
           <h3>
-            ${lowestPrice} - ${highestPrice}
+            {lowestPrice != Infinity ? `$${lowestPrice} - $${highestPrice}` : "Loading..."}
           </h3>
         </div>
       </div>
 
       <div className="filterContainer">
-        <div className="filterItem">
-          <h2>Filter by price</h2>
-          <div className="inputItem">
-            <span>${lowestPrice}</span>
-            <input
-              type="range"
-              value={lowestTicket}
-              min={lowestPrice}
-              max={1000}
-              step={0.0001}
-              onChange={handleTicketPrice}
-            />
-            <span>${1000}</span>
-          </div>
-        </div>
         <button onClick={handleEventDate}>
           {eventDate ? "Most Recent" : "Plan in Advance!"}
         </button>
         <button onClick={handleScore}>
           {score ? "Least Popular" : "Most Popular"}
         </button>
-        <form onSubmit={handleCitySubmit}>
-          <Input
-            type="text"
-            placeholder="Enter city here"
-            onChange={handleCityChange}
-          />
-        </form>
-        <button>Search City!</button>
+        <Input
+          type="number"
+          value={lowestTicket}
+          min={0}
+          max={1000}
+          step={5}
+          onChange={handleTicketPrice}
+          placeholder="Price Filter"
+          className="my-range-input"
+        />
+
+        <input
+          style={{ marginLeft: "20px" }}
+          type="text"
+          placeholder="Enter city here"
+          onChange={handleCityChange}
+        />
       </div>
 
       <div className="eventContainer">
