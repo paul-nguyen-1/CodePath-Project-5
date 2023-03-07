@@ -71,7 +71,6 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  overflow: hidden;
 }
 
 .navLinksActive {
@@ -79,7 +78,6 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: space-evenly;
   opacity: 0.4;
-  overflow: hidden;
 }
 
 .logo {
@@ -203,7 +201,6 @@ a.items:hover {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    overflow: hidden;
     width: auto;
     margin: 0;
   }
@@ -260,7 +257,7 @@ a.items:hover {
   }
 
   button, input {
-    width: 100%;
+    width: 250px;
     max-width: 100%;
     box-sizing: border-box;
   }
@@ -272,4 +269,20 @@ a.items:hover {
   .eventTitles{
     display: none
   }
+
+  .navbar, .navbarActive{
+    height: 25vh;
+  }
+  
+  .navLinks, .navLinksActive {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: auto;
+    flex-direction: column;
+}
+
+.statsContainer{
+  margin-top: 205px;
+}
 }
