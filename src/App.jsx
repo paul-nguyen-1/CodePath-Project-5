@@ -22,6 +22,7 @@ function App() {
   const BASE_URL = "https://api.seatgeek.com/2/events?venue.city=";
   const AMOUNT_PER_PAGE = `&per_page=700`;
   const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_CLIENT = import.meta.env.VITE_API_CLIENT;
   const ASSERT_TICKET_PRICING = `&lowest_price.gt=${lowestTicket}`;
   const eventDateOrder = eventDate ? "asc" : "desc";
   const scoreOrder = score ? "asc" : "desc";
@@ -38,7 +39,7 @@ function App() {
   useEffect(() => {
     const fetchAllEvents = async () => {
       const response = await fetch(
-        `${BASE_URL}${city}&${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${EVENT_DATE}`
+        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${EVENT_DATE}`
       );
       const json = await response.json();
       // console.log(json.events)
@@ -52,7 +53,7 @@ function App() {
   useEffect(() => {
     const fetchAllEvents = async () => {
       const response = await fetch(
-        `${BASE_URL}${city}&${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_ORDER}`
+        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_ORDER}`
       );
       const json = await response.json();
       setList(json.events);

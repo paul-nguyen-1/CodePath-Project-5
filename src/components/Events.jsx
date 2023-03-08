@@ -6,11 +6,12 @@ function Events({ event, date, title, location, venue, price, url, id }) {
   //URL Variables
   const BASE_URL = `https://api.seatgeek.com/2/events?id=${id}&`;
   const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_CLIENT = import.meta.env.VITE_API_CLIENT;
 
   //   Call and access API for events
   useEffect(() => {
     const searchEvents = async () => {
-      const response = await fetch(`${BASE_URL}${API_KEY}`);
+      const response = await fetch(`${BASE_URL}${API_CLIENT}${API_KEY}`);
       const json = await response.json();
       // console.log(json)
       setPerformance(json.events);
