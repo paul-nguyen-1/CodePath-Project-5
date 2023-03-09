@@ -34,3 +34,4 @@ describe("Navbar", () => {
     expect(contactButton).toBeInTheDocument();
   });
 });
+
