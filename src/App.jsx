@@ -10,7 +10,7 @@ function App() {
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
   const [navbar, setNavbar] = useState(false);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("Dallas");
   const [eventDate, setEventDate] = useState(true);
   const [score, setScore] = useState(true);
   const [lowestTicket, setLowestTicket] = useState(0);
@@ -51,7 +51,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [eventDate, lowestTicket, city, search, currentPage]);
+  }, [eventDate, lowestTicket, city, search, currentPage, postPerPage]);
 
   // Call and access API for sorting popularity on change
   useEffect(() => {
@@ -63,7 +63,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [score, lowestTicket, city, search, currentPage]);
+  }, [scoreOrder]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -137,9 +137,9 @@ function App() {
     setSearch(e.target.value);
   };
 
-  //Change Pages issue -- https://github.com/AdeleD/react-paginate/issues/167
+  //Change Pages issue resolved // come back if needed -- https://github.com/AdeleD/react-paginate/issues/167
   const changePage = ({ selected }) => {
-    setCurrentPage(selected + 1)
+    setCurrentPage(selected + 1);
   };
 
   const totalPages = meta && Math.ceil(meta.total / 10);
@@ -245,14 +245,13 @@ function App() {
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
-        pageCount={totalPages + 1}
+        pageCount={totalPages}
         onPageChange={changePage}
         containerClassName={"paginationBttns"}
         previousLinkClassName={"previousBttn"}
         nexLinkClassName={"nextBttn"}
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
-        forcePage={currentPage - 1}
         renderOnZeroPageCount={null}
       />
     </div>
