@@ -3,6 +3,7 @@ import "./App.css";
 import Events from "./components/Events";
 import Navbar from "./components/Navbar";
 import { Input } from "semantic-ui-react";
+import ReactPaginate from "react-paginate";
 
 function App() {
   const [searchFilter, setSearchFilter] = useState(false);
@@ -63,6 +64,18 @@ function App() {
     };
     fetchAllEvents().catch(console.error);
   }, [score, lowestTicket, city, search]);
+
+  // Call and access API for changing the page
+  useEffect(() => {
+    const fetchAllEvents = async () => {
+      const response = await fetch(
+        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_ORDER}`
+      );
+      const json = await response.json();
+      setList(json.events);
+    };
+    fetchAllEvents().catch(console.error);
+  }, [currentPage, eventDate, score, city, search]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -135,6 +148,14 @@ function App() {
   const handleSearchEvent = (e) => {
     setSearch(e.target.value);
   };
+
+  //Change Pages
+  const changePage = ({ selected }) => {
+    selected <= 0 ? null : setCurrentPage(selected);
+    console.log(currentPage);
+  };
+
+  const totalPages = meta && Math.ceil(meta.total / 10);
 
   return (
     <div className="App">
@@ -234,6 +255,17 @@ function App() {
               ) : null
             )}
       </div>
+      <ReactPaginate
+        previousLabel={"Previous"}
+        nextLabel={"Next"}
+        pageCount={totalPages}
+        onPageChange={changePage}
+        containerClassName={"paginationBttns"}
+        previousLinkClassName={"previousBttn"}
+        nexLinkClassName={"nextBttn"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+      />
     </div>
   );
 }
