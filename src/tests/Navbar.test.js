@@ -1,5 +1,5 @@
 const { render, screen } = require("@testing-library/react");
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
 describe("Navbar", () => {
   test("renders Navbar component", () => {

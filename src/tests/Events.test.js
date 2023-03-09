@@ -1,6 +1,5 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import Events from "./Events";
+const { render, screen } = require("@testing-library/react");
+import Events from '../components/Events'
 
 const mockEvent = {
   id: 1,
