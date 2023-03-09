@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "../App.css";
 import { Input } from "semantic-ui-react";
 
@@ -8,7 +8,7 @@ function Navbar({
   searchFilter,
   navbar,
   setNavbar,
-  searchTitle,
+  handleSearchEvent
 }) {
   //blur effect for navbar when scrolling
   const changeBackground = () => {
@@ -34,7 +34,7 @@ function Navbar({
           <Input
             type="text"
             placeholder="Search for Events"
-            onChange={(inputString) => searchTitle(inputString.target.value)}
+            onChange={handleSearchEvent}
           />
         )}
         <button onClick={handleSearchClick}>🔍 Search</button>

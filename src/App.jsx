@@ -13,14 +13,17 @@ function App() {
   const [eventDate, setEventDate] = useState(true);
   const [score, setScore] = useState(true);
   const [lowestTicket, setLowestTicket] = useState(0);
+  const [postPerPage, setPostPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
   //URL Variables
-  const BASE_URL = "https://api.seatgeek.com/2/events?venue.city=";
-  const AMOUNT_PER_PAGE = `&per_page=700`;
+  const BASE_URL = `https://api.seatgeek.com/2/events?q=${search}&venue.city=`;
+  const AMOUNT_PER_PAGE = `&per_page=${postPerPage}&page=${currentPage}`;
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_CLIENT = import.meta.env.VITE_API_CLIENT;
   const ASSERT_TICKET_PRICING = `&lowest_price.gt=${lowestTicket}`;
@@ -47,7 +50,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [eventDate, lowestTicket, city]);
+  }, [eventDate, lowestTicket, city, search]);
 
   // Call and access API for sorting popularity on change
   useEffect(() => {
@@ -59,7 +62,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [score, lowestTicket, city]);
+  }, [score, lowestTicket, city, search]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -108,23 +111,6 @@ function App() {
     }
   }
 
-  //Filter search for events
-  const searchTitle = (searchValue) => {
-    setSearchInput(searchValue);
-    if (searchValue !== "") {
-      // console.log(list);
-      const filteredData = Object.keys(list).filter((event) =>
-        Object.values(list[event].title)
-          .join("")
-          .toLowerCase()
-          .includes(searchValue.toLowerCase())
-      );
-      setFilteredResults(filteredData);
-    } else {
-      setFilteredResults(Object.keys(list));
-    }
-  };
-
   //Changes date to either the closest date or furthest
   const handleEventDate = () => {
     setEventDate(!eventDate);
@@ -135,15 +121,19 @@ function App() {
     setScore(!score);
   };
 
+  //Ticket pricing
   const handleTicketPrice = (e) => {
-    const value = e.target.value;
-    setTimeout(() => {
-      setLowestTicket(value);
-    }, 300);
+    setLowestTicket(e.target.value);
   };
 
+  //City change
   const handleCityChange = (e) => {
     setCity(e.target.value);
+  };
+
+  //Event Search
+  const handleSearchEvent = (e) => {
+    setSearch(e.target.value);
   };
 
   return (
@@ -153,7 +143,7 @@ function App() {
         searchFilter={searchFilter}
         navbar={navbar}
         setNavbar={setNavbar}
-        searchTitle={searchTitle}
+        handleSearchEvent={handleSearchEvent}
       />
 
       <div className="statsContainer">
