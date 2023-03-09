@@ -129,8 +129,7 @@ body::-webkit-scrollbar {
 }
 
 .stat:hover {
-  transform: scale(0.9);
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .stat:active {

@@ -10,7 +10,7 @@ function App() {
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
   const [navbar, setNavbar] = useState(false);
-  const [city, setCity] = useState("Dallas");
+  const [city, setCity] = useState("");
   const [eventDate, setEventDate] = useState(true);
   const [score, setScore] = useState(true);
   const [lowestTicket, setLowestTicket] = useState(0);
@@ -51,7 +51,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [eventDate, lowestTicket, city, search]);
+  }, [eventDate, lowestTicket, city, search, currentPage]);
 
   // Call and access API for sorting popularity on change
   useEffect(() => {
@@ -63,19 +63,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [score, lowestTicket, city, search]);
-
-  // Call and access API for changing the page
-  useEffect(() => {
-    const fetchAllEvents = async () => {
-      const response = await fetch(
-        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_ORDER}`
-      );
-      const json = await response.json();
-      setList(json.events);
-    };
-    fetchAllEvents().catch(console.error);
-  }, [currentPage, eventDate, score, city, search]);
+  }, [score, lowestTicket, city, search, currentPage]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -149,10 +137,9 @@ function App() {
     setSearch(e.target.value);
   };
 
-  //Change Pages
+  //Change Pages issue -- https://github.com/AdeleD/react-paginate/issues/167
   const changePage = ({ selected }) => {
-    selected <= 0 ? null : setCurrentPage(selected);
-    console.log(currentPage);
+    setCurrentPage(selected + 1)
   };
 
   const totalPages = meta && Math.ceil(meta.total / 10);
@@ -258,13 +245,15 @@ function App() {
       <ReactPaginate
         previousLabel={"Previous"}
         nextLabel={"Next"}
-        pageCount={totalPages}
+        pageCount={totalPages + 1}
         onPageChange={changePage}
         containerClassName={"paginationBttns"}
         previousLinkClassName={"previousBttn"}
         nexLinkClassName={"nextBttn"}
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
+        forcePage={currentPage - 1}
+        renderOnZeroPageCount={null}
       />
     </div>
   );
