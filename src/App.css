@@ -233,7 +233,7 @@ a.items:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.36), 0 1px 1px rgba(0, 0, 0, 0.23);
 }
 
-.cityInput{
+.cityInput {
   margin-left: 25px;
 }
 
@@ -255,7 +255,8 @@ a.items:hover {
     width: 100%;
   }
 
-  button, input {
+  button,
+  input {
     width: 250px;
     max-width: 100%;
     box-sizing: border-box;
@@ -265,31 +266,46 @@ a.items:hover {
     text-align: center;
   }
 
-  .eventTitles{
-    display: none
+  .eventTitles {
+    display: none;
   }
 
-  .navbar, .navbarActive{
+  .navbar {
     height: 25vh;
   }
-  
-  .navLinks, .navLinksActive {
+
+  .navbarActive,
+  .navLinksActive {
+    display: none;
+  }
+  .navLinks {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     width: auto;
     flex-direction: column;
-}
+  }
 
-.statsContainer{
-  margin-top: 205px;
-}
+  .statsContainer {
+    margin-top: 205px;
+  }
+
+  .paginationBttns {
+   margin-left: 12.5px !important;
+  }
+  .paginationBttns a {
+    padding: 3px !important;
+    margin: 1px !important;
+    padding-left: 1px !important;
+  }
 }
 
 .paginationBttns {
-  width: 80%;
+  width: 100%;
   height: 40px;
+  margin-top: 40px;
   list-style: none;
+  margin-right: 50px;
   display: flex;
   justify-content: center;
 }
@@ -301,7 +317,7 @@ a.items:hover {
   border: 1px solid #55555599;
   color: #7c7c7c;
   cursor: pointer;
-  width: 50px;
+  width: 100%;
 }
 
 .paginationBttns a:hover {
@@ -316,5 +332,5 @@ a.items:hover {
 
 .paginationDisabled a {
   color: grey;
-  opacity: 0.4
+  opacity: 0.4;
 }
