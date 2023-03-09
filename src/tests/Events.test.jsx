@@ -1,5 +1,5 @@
 const { render, screen } = require("@testing-library/react");
-import Events from '../components/Events'
+import Events from "../components/Events";
 
 const mockEvent = {
   id: 1,

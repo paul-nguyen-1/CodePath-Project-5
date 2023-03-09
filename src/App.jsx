@@ -12,7 +12,7 @@ function App() {
   const [city, setCity] = useState("Dallas");
   const [eventDate, setEventDate] = useState(true);
   const [score, setScore] = useState(true);
-  const [lowestTicket, setLowestTicket] = useState(1);
+  const [lowestTicket, setLowestTicket] = useState(0);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -168,7 +168,9 @@ function App() {
         <div className="stat">
           <h2>Price Range:</h2>
           <h3>
-            {lowestPrice != Infinity ? `$${lowestPrice} - $${highestPrice}` : "Loading..."}
+            {lowestPrice != Infinity
+              ? `$${lowestPrice} - $${highestPrice}`
+              : "Loading..."}
           </h3>
         </div>
       </div>
@@ -177,7 +179,7 @@ function App() {
         <button onClick={handleEventDate}>
           {eventDate ? "Most Recent" : "Plan in Advance!"}
         </button>
-        <button onClick={handleScore} style={{marginRight:"25px"}}>
+        <button onClick={handleScore} style={{ marginRight: "25px" }}>
           {score ? "Least Popular" : "Most Popular"}
         </button>
         <Input
@@ -192,7 +194,7 @@ function App() {
         />
 
         <input
-        className="cityInput"
+          className="cityInput"
           type="text"
           placeholder="Enter city here"
           onChange={handleCityChange}
