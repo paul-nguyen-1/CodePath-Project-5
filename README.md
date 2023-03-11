@@ -30,7 +30,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![](webdemo.gif)
+![](demo.gif)
 
 GIF created with [Kap](https://getkap.co/) for macOS
 
