@@ -10,9 +10,9 @@ function App() {
   const [list, setList] = useState(null);
   const [meta, setMeta] = useState(null);
   const [navbar, setNavbar] = useState(false);
-  const [city, setCity] = useState("Dallas");
-  const [eventDate, setEventDate] = useState(true);
-  const [score, setScore] = useState(true);
+  const [city, setCity] = useState("");
+  const [eventDate, setEventDate] = useState(null);
+  const [score, setScore] = useState(null);
   const [lowestTicket, setLowestTicket] = useState(0);
   const [postPerPage, setPostPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
