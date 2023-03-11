@@ -17,6 +17,7 @@ function App() {
   const [postPerPage, setPostPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [scoreEventChoice, setScoreEventChoice] = useState(null);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -32,6 +33,7 @@ function App() {
   const scoreOrder = score ? "asc" : "desc";
   const EVENT_DATE = `&sort=datetime_utc.${eventDateOrder}`;
   const SCORE_ORDER = `&sort=score.${scoreOrder}`;
+  const SCORE_EVENT = scoreEventChoice ? EVENT_DATE : SCORE_ORDER;
 
   //Enable search filter on nav
   const handleSearchClick = () => {
@@ -43,7 +45,7 @@ function App() {
   useEffect(() => {
     const fetchAllEvents = async () => {
       const response = await fetch(
-        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${EVENT_DATE}`
+        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_EVENT}`
       );
       const json = await response.json();
       // console.log(json.events)
@@ -51,19 +53,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [eventDate, lowestTicket, city, search, currentPage, postPerPage]);
-
-  // Call and access API for sorting popularity on change
-  useEffect(() => {
-    const fetchAllEvents = async () => {
-      const response = await fetch(
-        `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_ORDER}`
-      );
-      const json = await response.json();
-      setList(json.events);
-    };
-    fetchAllEvents().catch(console.error);
-  }, [scoreOrder]);
+  }, [SCORE_EVENT, lowestTicket, city, search, currentPage, postPerPage]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -115,11 +105,13 @@ function App() {
   //Changes date to either the closest date or furthest
   const handleEventDate = () => {
     setEventDate(!eventDate);
+    setScoreEventChoice(true);
   };
 
   //Change score from most popular to least popular
   const handleScore = () => {
     setScore(!score);
+    setScoreEventChoice(false);
   };
 
   //Ticket pricing
