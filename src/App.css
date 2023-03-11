@@ -291,7 +291,7 @@ a.items:hover {
   }
 
   .paginationBttns {
-   margin-left: 12.5px !important;
+    margin-left: 12.5px !important;
   }
   .paginationBttns a {
     padding: 3px !important;
@@ -311,8 +311,8 @@ a.items:hover {
 }
 
 .paginationBttns a {
-  padding: 10px;
-  margin: 8px;
+  padding: 12px;
+  margin: 10px;
   border-radius: 5px;
   border: 1px solid #55555599;
   color: #7c7c7c;
