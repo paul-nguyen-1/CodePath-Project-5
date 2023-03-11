@@ -334,3 +334,10 @@ a.items:hover {
   color: grey;
   opacity: 0.4;
 }
+
+.errorPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+}

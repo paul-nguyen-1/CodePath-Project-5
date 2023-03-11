@@ -2,13 +2,14 @@ import React from "react";
 import { useEffect } from "react";
 import "../App.css";
 import { Input } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 function Navbar({
   handleSearchClick,
   searchFilter,
   navbar,
   setNavbar,
-  handleSearchEvent
+  handleSearchEvent,
 }) {
   //blur effect for navbar when scrolling
   const changeBackground = () => {
@@ -27,7 +28,10 @@ function Navbar({
   return (
     <div className={navbar ? "navbarActive" : "navbar"}>
       <div className={navbar ? "logoActive" : "logo"}>
-        <h2>NeetSeat 🎟</h2>
+        <Link to="/" style={{ color: "white" }}>
+          {" "}
+          <h2>NeetSeat 🎟</h2>
+        </Link>
       </div>
       <div className={navbar ? "navLinksActive" : "navLinks"}>
         {searchFilter && (
@@ -38,8 +42,12 @@ function Navbar({
           />
         )}
         <button onClick={handleSearchClick}>🔍 Search</button>
-        <button>ℹ️ About</button>
-        <button>🏠 Contact</button>
+        <Link to="/about">
+          <button>ℹ️ About</button>
+        </Link>
+        <Link to="/contact">
+          <button>🏠 Contact</button>
+        </Link>
       </div>
     </div>
   );
