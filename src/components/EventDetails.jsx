@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import EventCard from "./EventCard";
 
 function EventDetails() {
   //URL Variables
@@ -19,39 +20,32 @@ function EventDetails() {
       console.log(json);
       setEventInfo(json.recommendations);
     };
+    console.log(params);
     searchEvents().catch(console.error);
-  }, [params.id]);
+  }, [params.id, params.postal_code]);
 
   return (
     <div style={{ marginTop: "100px" }}>
-      <h1>Recommendations {params.postal_code}</h1>
+      <h1 style={{display:"flex", justifyContent:"center", alignItems:"center"}}>Recommendations {params.postal_code}</h1>
       {eventInfo &&
         eventInfo.map((event, index) => (
           <div key={index}>
-            <h1>{event.event.title}</h1>
-            <h2>Venue: {event.event.venue.name}</h2>
-            <img
-              className="eventImage"
+            <EventCard
+              key={index}
+              title={event.event.title}
+              venue={event.event.venue.name}
               src={event.event.performers[0].image}
               alt={event.event.title}
+              description={event.event.description}
+              location={event.event.venue.address}
+              exact_address = {event.event.venue.extended_address}
+              listing_count={event.event.stats.listing_count}
+              lowest_price={event.event.stats.lowest_sg_base_price}
+              average_price={event.event.stats.median_price}
+              highest_price={event.event.stats.highest_price}
+              ticket_url={event.event.url}
+              index={index}
             />
-            <p>
-              Description:{" "}
-              {event.event.description === ""
-                ? "No Description Available."
-                : event.event.description}
-            </p>
-            <p>
-              Exact Location: {event.event.venue.address}{" "}
-              {event.event.venue.extended_address}{" "}
-            </p>
-            <p>Listing Count: {event.event.stats.listing_count} tickets</p>
-            <p>Lowest Price: ${event.event.stats.lowest_sg_base_price}</p>
-            <p>Average Price: ${event.event.stats.median_price}</p>
-            <p>Highest Price: ${event.event.stats.highest_price}</p>
-            <button>
-              <a href={event.event.url}>Tickets</a>
-            </button>
           </div>
         ))}
     </div>

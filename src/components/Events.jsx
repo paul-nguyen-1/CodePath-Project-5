@@ -39,7 +39,7 @@ function Events({
       {performance ? (
         <div key={id}>
           <Link
-            to={`/EventInfo/${id}`}
+            to={`/EventInfo/${id}/${postal_code}`}
             key={id}
             className="eventRow eventItems"
             style={{ color: "white", display: "flex" }}
