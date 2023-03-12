@@ -10,6 +10,10 @@ function EventDetails() {
   const API_CLIENT = import.meta.env.VITE_API_CLIENT;
 
   const [eventInfo, setEventInfo] = useState(null);
+  const [cardIndex, setCardIndex] = useState(1);
+
+  const [invalidArrowLeft, setInvalidArrowLeft] = useState(true);
+  const [invalidArrowRight, setInvalidArrowRight] = useState(false);
 
   useEffect(() => {
     const searchEvents = async () => {
@@ -24,30 +28,59 @@ function EventDetails() {
     searchEvents().catch(console.error);
   }, [params.id, params.postal_code]);
 
+  const handleLeftArrowKey = () => {
+    cardIndex < 2 ? setCardIndex(1) : setCardIndex(cardIndex - 1);
+    cardIndex < 3
+      ? setInvalidArrowLeft(true)
+      : setInvalidArrowRight(false) && setInvalidArrowLeft(false);
+  };
+
+  const handleRightArrowKey = () => {
+    cardIndex > eventInfo.length - 2
+      ? setCardIndex(eventInfo.length - 1)
+      : setCardIndex(cardIndex + 1);
+    cardIndex > eventInfo.length - 3
+      ? setInvalidArrowRight(true)
+      : setInvalidArrowLeft(false) && setInvalidArrowRight(false);
+  };
+
   return (
     <div style={{ marginTop: "100px" }}>
-      <h1 style={{display:"flex", justifyContent:"center", alignItems:"center"}}>Recommendations {params.postal_code}</h1>
-      {eventInfo &&
-        eventInfo.map((event, index) => (
-          <div key={index}>
-            <EventCard
-              key={index}
-              title={event.event.title}
-              venue={event.event.venue.name}
-              src={event.event.performers[0].image}
-              alt={event.event.title}
-              description={event.event.description}
-              location={event.event.venue.address}
-              exact_address = {event.event.venue.extended_address}
-              listing_count={event.event.stats.listing_count}
-              lowest_price={event.event.stats.lowest_sg_base_price}
-              average_price={event.event.stats.median_price}
-              highest_price={event.event.stats.highest_price}
-              ticket_url={event.event.url}
-              index={index}
-            />
-          </div>
-        ))}
+      <h1 style={{ textAlign: "center" }}>Recommended Events Nearby!</h1>
+
+      {eventInfo && (
+        <div>
+          <EventCard
+            title={eventInfo[cardIndex].event.title}
+            venue={eventInfo[cardIndex].event.venue.name}
+            src={eventInfo[cardIndex].event.performers[0].image}
+            alt={eventInfo[cardIndex].event.title}
+            description={eventInfo[cardIndex].event.description}
+            location={eventInfo[cardIndex].event.venue.address}
+            exact_address={eventInfo[cardIndex].event.venue.extended_address}
+            listing_count={eventInfo[cardIndex].event.stats.listing_count}
+            lowest_price={eventInfo[cardIndex].event.stats.lowest_sg_base_price}
+            average_price={eventInfo[cardIndex].event.stats.median_price}
+            highest_price={eventInfo[cardIndex].event.stats.highest_price}
+            ticket_url={eventInfo[cardIndex].event.url}
+            index={cardIndex}
+          />
+        </div>
+      )}
+      <div className="arrow">
+        <div
+          onClick={handleLeftArrowKey}
+          className={invalidArrowLeft ? "invalidLeftArrow" : "leftArrowKey"}
+        >
+          ←
+        </div>
+        <div
+          onClick={handleRightArrowKey}
+          className={invalidArrowRight ? "invalidRightArrow" : "rightArrowKey"}
+        >
+          →
+        </div>
+      </div>
     </div>
   );
 }

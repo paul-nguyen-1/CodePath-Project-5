@@ -1,7 +1,7 @@
 .card {
   display: flex;
   justify-content: center;
-  margin: 1rem;
+  line-height: 20px;
 }
 
 .cardContainer {
@@ -9,19 +9,111 @@
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
   height: 100%;
+  box-shadow: 10px 5px 5px rgba(196, 195, 195, 0.511);
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftArrowKey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  font-size: 2em;
+  background-color: rgba(75, 75, 75, 0.632);
+  border-radius: 45px;
+  margin-right: 10px;
+}
+
+.leftArrowKey:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.rightArrowKey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  font-size: 2em;
+  background-color: rgba(75, 75, 75, 0.632);
+  border-radius: 45px;
+  margin-left: 10px;
+}
+
+.rightArrowKey:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.invalidLeftArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  font-size: 2em;
+  background-color: rgba(75, 75, 75, 0.632);
+  border-radius: 45px;
+  margin-right: 10px;
+  opacity: 0.3;
+}
+
+.invalidRightArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  font-size: 2em;
+  background-color: rgba(75, 75, 75, 0.632);
+  border-radius: 45px;
+  margin-left: 10px;
+  opacity: 0.3;
+}
+
+.miscContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 0px 25px;
+}
+
+img {
+  border-radius: 25px;
+  margin-right: 25px;
+}
+
+h1 {
+  margin: 0px;
 }
 
 @media only screen and (max-width: 600px) {
   .cardContainer {
     max-width: 100%;
     height: auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .miscContainer {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0px auto;
   }
 }
