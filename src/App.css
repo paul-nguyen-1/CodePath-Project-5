@@ -160,6 +160,7 @@ body::-webkit-scrollbar {
 .eventColumn {
   margin: 0 5px;
   flex-basis: 20%;
+  text-align: center;
 }
 
 .eventItems:nth-child(even) {
@@ -212,6 +213,10 @@ a.items:hover {
   .statsContainer {
     width: 100%;
   }
+h3{
+  font-size: .95em;
+}
+
 }
 
 .filterContainer {
@@ -255,9 +260,19 @@ a.items:hover {
     width: 100%;
   }
 
+  .eventRow,
+  .eventTitles {
+    border: 1px solid white;
+    margin: 2.5px;
+  }
+
+  .eventColumn {
+    padding: 2.5px;
+  }
+
   button,
   input {
-    width: 250px;
+    width: 150px;
     max-width: 100%;
     box-sizing: border-box;
   }
@@ -335,7 +350,7 @@ a.items:hover {
   opacity: 0.4;
 }
 
-.errorPage{
+.errorPage {
   display: flex;
   justify-content: center;
   align-items: center;

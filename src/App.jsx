@@ -48,7 +48,7 @@ function App() {
         `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_EVENT}`
       );
       const json = await response.json();
-      // console.log(json.events)
+      console.log(json.events)
       setMeta(json.meta);
       setList(json.events);
     };
@@ -214,6 +214,7 @@ function App() {
                   price={list[event].stats.lowest_sg_base_price}
                   url={list[event].url}
                   id={list[event].id}
+                  postal_code={list[event].venue.postal_code}
                 />
               ) : null
             )
@@ -230,6 +231,7 @@ function App() {
                   price={list[event].stats.lowest_sg_base_price}
                   url={list[event].url}
                   id={list[event].id}
+                  postal_code={list[event].venue.postal_code}
                 />
               ) : null
             )}
