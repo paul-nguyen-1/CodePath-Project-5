@@ -116,4 +116,8 @@ h1 {
     flex-flow: column wrap;
     margin: 0px auto;
   }
+
+  h2{
+    margin: 20px;
+  }
 }

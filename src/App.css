@@ -122,10 +122,11 @@ body::-webkit-scrollbar {
   height: 150px;
   box-sizing: border-box;
   border: 2px solid white;
-  border-radius: 20px;
+  border-radius: 10px;
   margin: 0px 10px;
   text-align: center;
   cursor: pointer;
+  box-shadow: 7.5px 5px 5px rgba(196, 195, 195, 0.511);
 }
 
 .stat:hover {
@@ -212,9 +213,20 @@ a.items:hover {
 
   .statsContainer {
     width: 100%;
+    display: flex;
+    flex-flow: column wrap;
   }
+
+.stat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  width: 80%;
+}
+
   h3 {
-    font-size: 0.95em;
+    font-size: 1em;
   }
 }
 

@@ -5,6 +5,7 @@ function EventCard({
   index,
   title,
   venue,
+  date,
   src,
   alt,
   description,
@@ -22,6 +23,7 @@ function EventCard({
         <div key={index}>
           <h2 style={{ textDecoration: "underline" }}>{title}</h2>
           <h3>Venue: {venue}</h3>
+          <h3>Date: {date}</h3>
           <div className="miscContainer">
             <div>
               <img className="eventImage" src={src} alt={alt} />

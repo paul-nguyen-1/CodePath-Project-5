@@ -46,13 +46,14 @@ function EventDetails() {
 
   return (
     <div style={{ marginTop: "100px" }}>
-      <h1 style={{ textAlign: "center" }}>Recommended Events Nearby!</h1>
+      <h1 style={{ textAlign: "center" }}>Recommended Events:</h1>
 
       {eventInfo && (
         <div>
           <EventCard
             title={eventInfo[cardIndex].event.title}
             venue={eventInfo[cardIndex].event.venue.name}
+            date={new Date(eventInfo[cardIndex].event.datetime_utc).toLocaleDateString()}
             src={eventInfo[cardIndex].event.performers[0].image}
             alt={eventInfo[cardIndex].event.title}
             description={eventInfo[cardIndex].event.description}
