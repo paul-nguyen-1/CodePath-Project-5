@@ -48,7 +48,7 @@ function App() {
         `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_EVENT}`
       );
       const json = await response.json();
-      console.log(json.events)
+      // console.log(json.events);
       setMeta(json.meta);
       setList(json.events);
     };
@@ -145,7 +145,6 @@ function App() {
         setNavbar={setNavbar}
         handleSearchEvent={handleSearchEvent}
       />
-
       <div className="statsContainer">
         <div className="stat">
           <h2>Live Events:</h2>

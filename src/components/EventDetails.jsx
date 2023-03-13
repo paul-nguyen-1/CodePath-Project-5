@@ -1,6 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EventCard from "./EventCard";
+import EventChart from "./EventChart";
 
 function EventDetails() {
   //URL Variables
@@ -21,10 +22,9 @@ function EventDetails() {
         `${RECOMMENDATION_URL}${API_CLIENT}${API_KEY}`
       );
       const json = await recommendations.json();
-      console.log(json);
+      // console.log(json);
       setEventInfo(json.recommendations);
     };
-    console.log(params);
     searchEvents().catch(console.error);
   }, [params.id, params.postal_code]);
 
@@ -45,7 +45,12 @@ function EventDetails() {
   };
 
   return (
-    <div style={{ marginTop: "100px" }}>
+    <div className="eventDetails">
+      <EventChart
+        id={params.id}
+        postal_code={params.postal_code}
+        index={cardIndex}
+      />
       <h1 style={{ textAlign: "center" }}>Recommended Events:</h1>
 
       {eventInfo && (
@@ -53,7 +58,9 @@ function EventDetails() {
           <EventCard
             title={eventInfo[cardIndex].event.title}
             venue={eventInfo[cardIndex].event.venue.name}
-            date={new Date(eventInfo[cardIndex].event.datetime_utc).toLocaleDateString()}
+            date={new Date(
+              eventInfo[cardIndex].event.datetime_utc
+            ).toLocaleDateString()}
             src={eventInfo[cardIndex].event.performers[0].image}
             alt={eventInfo[cardIndex].event.title}
             description={eventInfo[cardIndex].event.description}
