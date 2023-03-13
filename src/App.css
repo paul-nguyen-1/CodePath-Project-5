@@ -109,6 +109,14 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
 }
 
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  padding-bottom: 25px;
+}
+
 .statsContainer {
   display: flex;
   width: 60%;

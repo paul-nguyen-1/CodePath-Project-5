@@ -131,20 +131,20 @@ function App() {
 
   //Change Pages issue resolved // come back if needed -- https://github.com/AdeleD/react-paginate/issues/167
   const changePage = ({ selected }) => {
-    setCurrentPage(selected + 1);
+    setCurrentPage(Math.ceil(selected + 1));
   };
 
   const totalPages = meta && Math.ceil(meta.total / 10);
 
   return (
     <div className="App">
-      <Navbar
+      {<Navbar
         handleSearchClick={handleSearchClick}
         searchFilter={searchFilter}
         navbar={navbar}
         setNavbar={setNavbar}
         handleSearchEvent={handleSearchEvent}
-      />
+      />}
       <div className="statsContainer">
         <div className="stat">
           <h2>Live Events:</h2>
