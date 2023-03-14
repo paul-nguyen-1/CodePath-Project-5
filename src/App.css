@@ -109,7 +109,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
 }
 
-.content{
+.content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -226,13 +226,13 @@ a.items:hover {
     flex-flow: column wrap;
   }
 
-.stat{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  width: 80%;
-}
+  .stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    width: 80%;
+  }
 
   h3 {
     font-size: 1em;
@@ -262,7 +262,7 @@ a.items:hover {
   margin-left: 25px;
 }
 
-.eventDetails{
+.eventDetails {
   margin-top: 100px;
 }
 
@@ -274,8 +274,12 @@ a.items:hover {
     flex-direction: column;
     align-items: stretch;
   }
+  .contact,
+  .about {
+    margin-top: 200px !important;
+  }
 
-  .eventDetails{
+  .eventDetails {
     margin-top: 200px;
   }
 
@@ -387,4 +391,72 @@ a.items:hover {
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.contact h1 {
+  margin-bottom: 2rem;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  border: 2px solid #ccc;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.contact label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact textarea {
+  height: 10rem;
+}
+
+.contact button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.contact button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.contactContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin-top: 100px;
 }
