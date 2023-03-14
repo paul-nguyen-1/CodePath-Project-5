@@ -17,6 +17,10 @@ function EventCard({
   highest_price,
   ticket_url,
 }) {
+  function handleClick() {
+    window.location.href = `${ticket_url}`;
+  }
+
   return (
     <div className="card">
       <div className="cardContainer">
@@ -40,8 +44,8 @@ function EventCard({
               <p>Lowest Price: ${lowest_price}</p>
               <p>Average Price: ${average_price}</p>
               <p>Highest Price: ${highest_price}</p>
-              <button>
-                <a href={ticket_url}>Tickets</a>
+              <button onClick={handleClick} style={{ color: "#646cff" }}>
+                Tickets
               </button>
             </div>
           </div>
