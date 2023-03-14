@@ -53,6 +53,7 @@ body::-webkit-scrollbar {
   background-color: rgba(76, 76, 77, 0.506);
   overflow: hidden;
   padding: 0 1rem;
+  box-shadow: 2px 5px 5px rgba(76, 76, 77, 0.506);
 }
 
 .navbarActive {
@@ -107,6 +108,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  background-color: rgba(43, 43, 43, 0.821);
 }
 
 .content {
