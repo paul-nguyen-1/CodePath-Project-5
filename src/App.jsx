@@ -70,8 +70,7 @@ function App() {
       }
     }
   }
-  const average_price =
-    num_events > 0 ? (total_price / num_events).toFixed(2) : 0;
+  const average_price = num_events > 0 ? total_price / num_events : 0;
 
   //Return lowest price for all events in city
   let lowestPrice = Infinity;
@@ -138,27 +137,35 @@ function App() {
 
   return (
     <div className="App">
-      {<Navbar
-        handleSearchClick={handleSearchClick}
-        searchFilter={searchFilter}
-        navbar={navbar}
-        setNavbar={setNavbar}
-        handleSearchEvent={handleSearchEvent}
-      />}
+      {
+        <Navbar
+          handleSearchClick={handleSearchClick}
+          searchFilter={searchFilter}
+          navbar={navbar}
+          setNavbar={setNavbar}
+          handleSearchEvent={handleSearchEvent}
+        />
+      }
       <div className="statsContainer">
         <div className="stat">
           <h2>Live Events:</h2>
-          <h3>{meta && meta.total ? meta.total : "Loading..."}</h3>
+          <h3>
+            {meta && meta.total ? meta.total.toLocaleString() : "Loading..."}
+          </h3>
         </div>
         <div className="stat">
           <h2>Average Price:</h2>
-          <h3>{average_price ? `$${average_price}` : "Loading..."}</h3>
+          <h3>
+            {average_price
+              ? `$${average_price.toLocaleString()}`
+              : "Loading..."}
+          </h3>
         </div>
         <div className="stat">
           <h2>Price Range:</h2>
           <h3>
             {lowestPrice != Infinity
-              ? `$${lowestPrice} - $${highestPrice}`
+              ? `$${lowestPrice.toLocaleString()} - $${highestPrice.toLocaleString()}`
               : "Loading..."}
           </h3>
         </div>
@@ -210,7 +217,9 @@ function App() {
                   title={list[event].title}
                   location={list[event].venue.display_location}
                   venue={list[event].venue.name}
-                  price={list[event].stats.lowest_sg_base_price}
+                  price={list[
+                    event
+                  ].stats.lowest_sg_base_price.toLocaleString()}
                   url={list[event].url}
                   id={list[event].id}
                   postal_code={list[event].venue.postal_code}
@@ -227,7 +236,9 @@ function App() {
                   title={list[event].title}
                   location={list[event].venue.display_location}
                   venue={list[event].venue.name}
-                  price={list[event].stats.lowest_sg_base_price}
+                  price={list[
+                    event
+                  ].stats.lowest_sg_base_price.toLocaleString()}
                   url={list[event].url}
                   id={list[event].id}
                   postal_code={list[event].venue.postal_code}

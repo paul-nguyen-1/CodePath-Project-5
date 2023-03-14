@@ -66,10 +66,18 @@ function EventDetails() {
             description={eventInfo[cardIndex].event.description}
             location={eventInfo[cardIndex].event.venue.address}
             exact_address={eventInfo[cardIndex].event.venue.extended_address}
-            listing_count={eventInfo[cardIndex].event.stats.listing_count}
-            lowest_price={eventInfo[cardIndex].event.stats.lowest_sg_base_price}
-            average_price={eventInfo[cardIndex].event.stats.median_price}
-            highest_price={eventInfo[cardIndex].event.stats.highest_price}
+            listing_count={eventInfo[
+              cardIndex
+            ].event.stats.listing_count.toLocaleString()}
+            lowest_price={eventInfo[
+              cardIndex
+            ].event.stats.lowest_sg_base_price.toLocaleString()}
+            average_price={eventInfo[
+              cardIndex
+            ].event.stats.average_price.toLocaleString()}
+            highest_price={eventInfo[
+              cardIndex
+            ].event.stats.highest_price.toLocaleString()}
             ticket_url={eventInfo[cardIndex].event.url}
             index={cardIndex}
           />

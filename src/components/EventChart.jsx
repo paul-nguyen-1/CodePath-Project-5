@@ -1,5 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 import "../App.css";
 
 function EventChart({ id, postal_code, index }) {
@@ -12,56 +20,59 @@ function EventChart({ id, postal_code, index }) {
     const getEventData = async () => {
       const data = await fetch(`${RECOMMENDATION_URL}${API_CLIENT}${API_KEY}`);
       const json = await data.json();
-      console.log(json.recommendations[index]);
+      // console.log(json.recommendations[index]);
       setEventData(json.recommendations);
     };
     getEventData().catch(console.error);
   }, [id, postal_code, index]);
 
-  const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
+  const colors = [
+    "#0088FE",
+    "#87CEEB",
+    "#FFBB28",
+    "#FF8042",
+    "red",
+    "pink",
+    "purple",
+  ];
 
   const data = [
     {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      name: "Average Price",
+      uv: eventData && eventData[index].event.stats.average_price,
+      value: "price",
     },
     {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+      name: "Median Price",
+      uv: eventData && eventData[index].event.stats.median_price,
+      value: "price",
     },
     {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
+      name: "Lowest Price",
+      uv:
+        eventData &&
+        eventData[index].event.stats.lowest_sg_base_price_good_deals,
+      value: "price",
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+      name: "Good Deal",
+      uv: eventData && eventData[index].event.stats.lowest_price_good_deals,
+      value: "price",
     },
     {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
+      name: "Highest Price",
+      uv: eventData && eventData[index].event.stats.highest_price,
+      value: "price",
     },
     {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
+      name: "Listing Count",
+      uv: eventData && eventData[index].event.stats.listing_count,
+      value: "listing",
     },
     {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      name: "Visible Listing Count",
+      uv: eventData && eventData[index].event.stats.listing_count,
+      value: "listing",
     },
   ];
 
@@ -82,9 +93,30 @@ function EventChart({ id, postal_code, index }) {
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeItem = data[activeIndex];
+
+  const handleClick = useCallback(
+    function (entry, index) {
+      setActiveIndex(index);
+    },
+    [setActiveIndex]
+  );
+
   return (
     <div className="content">
-      <ResponsiveContainer width="100%" height={300}>
+      <h3 className="content">{`${activeItem.name} for ${
+        eventData && eventData[index].event.title
+      }: ${
+        eventData && data[activeIndex].value == "price" ? "$" : ""
+      }${activeItem.uv && activeItem.uv.toLocaleString()} ${
+        eventData && data[activeIndex].value === "listing" ? "tickets" : ""
+      }`}</h3>
+      <ResponsiveContainer
+        width="100%"
+        height={300}
+        style={{ cursor: "pointer" }}
+      >
         <BarChart
           data={data}
           margin={{
@@ -102,9 +134,14 @@ function EventChart({ id, postal_code, index }) {
             fill="#8884d8"
             shape={<TriangleBar />}
             label={{ position: "top" }}
+            onClick={handleClick}
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+              <Cell
+                cursor="pointer"
+                key={`cell-${index}`}
+                fill={index === activeIndex ? "#82ca9d" : colors[index % 20]}
+              />
             ))}
           </Bar>
         </BarChart>
