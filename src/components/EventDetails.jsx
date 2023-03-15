@@ -51,8 +51,6 @@ function EventDetails() {
         postal_code={params.postal_code}
         index={cardIndex}
       />
-      <h1 style={{ textAlign: "center" }}>Recommended Events:</h1>
-
       {eventInfo && (
         <div>
           <EventCard

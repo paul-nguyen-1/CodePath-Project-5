@@ -105,13 +105,7 @@ function EventChart({ id, postal_code, index }) {
 
   return (
     <div className="content">
-      <h3 className="content">{`${activeItem.name} for ${
-        eventData && eventData[index].event.title
-      }: ${
-        eventData && data[activeIndex].value == "price" ? "$" : ""
-      }${activeItem.uv && activeItem.uv.toLocaleString()} ${
-        eventData && data[activeIndex].value === "listing" ? "tickets" : ""
-      }`}</h3>
+      <h1 style={{ textAlign: "center", fontSize:"2em" }}>Recommended Events:</h1>
       <ResponsiveContainer
         width="100%"
         height={300}
@@ -146,6 +140,13 @@ function EventChart({ id, postal_code, index }) {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      <h3 className="content">{`${activeItem.name} for ${
+        eventData && eventData[index].event.title
+      }: ${eventData && data[activeIndex].value == "price" ? "$" : ""}${
+        activeItem.uv && activeItem.uv.toLocaleString()
+      } ${
+        eventData && data[activeIndex].value === "listing" ? "tickets" : ""
+      }`}</h3>
     </div>
   );
 }
