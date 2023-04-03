@@ -11,7 +11,7 @@ function EventDetails() {
   const API_CLIENT = import.meta.env.VITE_API_CLIENT;
 
   const [eventInfo, setEventInfo] = useState(null);
-  const [cardIndex, setCardIndex] = useState(1);
+  const [cardIndex, setCardIndex] = useState(0);
 
   const [invalidArrowLeft, setInvalidArrowLeft] = useState(true);
   const [invalidArrowRight, setInvalidArrowRight] = useState(false);
@@ -29,7 +29,7 @@ function EventDetails() {
   }, [params.id, params.postal_code]);
 
   const handleLeftArrowKey = () => {
-    cardIndex < 2 ? setCardIndex(1) : setCardIndex(cardIndex - 1);
+    cardIndex < 2 ? setCardIndex(0) : setCardIndex(cardIndex - 1);
     cardIndex < 3
       ? setInvalidArrowLeft(true)
       : setInvalidArrowRight(false) && setInvalidArrowLeft(false);

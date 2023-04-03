@@ -60,11 +60,6 @@ function EventChart({ id, postal_code, index }) {
       value: "price",
     },
     {
-      name: "Highest Price",
-      uv: eventData && eventData[index].event.stats.highest_price,
-      value: "price",
-    },
-    {
       name: "Listing Count",
       uv: eventData && eventData[index].event.stats.listing_count,
       value: "listing",
@@ -105,7 +100,7 @@ function EventChart({ id, postal_code, index }) {
 
   return (
     <div className="content">
-      <h1 style={{ textAlign: "center", fontSize:"2em" }}>Recommended Events:</h1>
+      <h1 style={{ textAlign: "center", fontSize: "2em" }}>Events Nearby:</h1>
       <ResponsiveContainer
         width="100%"
         height={300}
