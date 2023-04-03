@@ -19,9 +19,9 @@ The following **optional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-GIF created with ...  
+GIF created with [Kap](https://getkap.co/) for macOS
 
-[Kap](https://getkap.co/) for macOS
+![](webdemo.gif)
 
 
 
