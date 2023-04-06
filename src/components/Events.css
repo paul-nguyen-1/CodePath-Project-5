@@ -4,6 +4,7 @@
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid rgba(177, 177, 177, 0.415);
+  font-size: 16px;
 }
 
 .events:hover {
@@ -23,8 +24,8 @@
   padding: 10px;
 }
 
-.subAttributes{
-display: flex;
+.subAttributes {
+  display: flex;
 }
 
 .eventSub {
@@ -39,12 +40,72 @@ display: flex;
   width: 100%;
 }
 
-.eventSecondSub{
+.eventSecondSub {
   display: flex;
 }
 
 .eventAttribute {
+  display: flex;
+  align-items: center;
+  text-align: center;
   border-radius: 10px;
   padding: 0px 10px;
   margin: 2.5px 2.5px;
+}
+
+@media screen and (max-width: 960px) {
+  .events {
+    font-size: 14px;
+  }
+
+  .stat {
+    align-self: center;
+  }
+
+  .eventMain {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .eventContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .events {
+    font-size: 13px;
+  }
+
+  .eventMain {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .performer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .eventContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .events {
+    font-size: 12px;
+  }
+
+  .eventMain {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .performer {
+    display: none;
+  }
 }

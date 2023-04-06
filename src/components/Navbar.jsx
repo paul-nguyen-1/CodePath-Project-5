@@ -30,7 +30,7 @@ function Navbar({
       <div className={navbar ? "logoActive" : "logo"}>
         <Link to="/" style={{ color: "white" }}>
           {" "}
-          <h2 style={{color:"black"}}>NeetSeat 🎟</h2>
+          <h2 style={{color:"black"}} className="navbarTitle">NeetSeat</h2>
         </Link>
       </div>
       <div className={navbar ? "navLinksActive" : "navLinks"}>

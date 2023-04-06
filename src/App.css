@@ -120,10 +120,10 @@ body::-webkit-scrollbar {
 }
 
 .stat {
- display: flex;
- align-items: center;
- padding: 0px 10px;
- cursor:crosshair;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  cursor: crosshair;
 }
 
 .eventContainer {
@@ -164,6 +164,11 @@ a.items {
 
 a.items:hover {
   color: #005ea3;
+}
+
+.navbarTitle {
+  font-family: "Alegreya", sans-serif;
+  font-style: regular;
 }
 
 @media screen and (max-width: 768px) {

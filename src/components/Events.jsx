@@ -89,7 +89,7 @@ function Events({
 
                     {first_performer && (
                       <div
-                        className="eventAttribute"
+                        className="eventAttribute performer"
                         style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
                       >
                         {first_performer}
@@ -97,7 +97,7 @@ function Events({
                     )}
                     {second_performer && (
                       <div
-                        className="eventAttribute"
+                        className="eventAttribute performer"
                         style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
                       >
                         {second_performer}
@@ -105,7 +105,7 @@ function Events({
                     )}
                     {third_performer && (
                       <div
-                        className="eventAttribute"
+                        className="eventAttribute performer"
                         style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
                       >
                         {third_performer}
@@ -113,7 +113,7 @@ function Events({
                     )}
                     {fourth_performer && (
                       <div
-                        className="eventAttribute"
+                        className="eventAttribute performer"
                         style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
                       >
                         {fourth_performer}

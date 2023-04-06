@@ -199,7 +199,7 @@ function App() {
 
       <div className="eventContainer">
         <div className="stat">
-          <h3>
+          <h3 style={{ fontSize: "24px" }}>
             {meta && meta.total
               ? meta.total.toLocaleString() + " events "
               : "Loading..."}
