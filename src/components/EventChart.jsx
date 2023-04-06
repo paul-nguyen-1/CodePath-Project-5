@@ -134,7 +134,7 @@ function EventChart({ id, postal_code, index }) {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <h3 className="content">{`${activeItem.name}: ${eventData && data[activeIndex].value == "price" ? "$" : ""}${
+      <h3 className="content" style={{color:"gray"}}>{`${activeItem.name}: ${eventData && data[activeIndex].value == "price" ? "$" : ""}${
         activeItem.uv && activeItem.uv.toLocaleString()
       } ${
         eventData && data[activeIndex].value === "listing" ? "tickets" : ""

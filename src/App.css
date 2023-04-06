@@ -49,6 +49,7 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #fff;
   height: 80px;
   width: 100vw;
   overflow: hidden;
@@ -107,7 +108,8 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-
+  background-color: white;
+  color: black;
 }
 
 .content {
@@ -163,13 +165,13 @@ body::-webkit-scrollbar {
 
 .eventTitles {
   font-weight: bold;
- 
 }
 
 .eventColumn {
   margin: 0 5px;
   flex-basis: 20%;
   text-align: center;
+  color: black;
 }
 
 .eventItems:nth-child(even) {
@@ -392,59 +394,12 @@ a.items:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 }
 
 .contact h1 {
   margin-bottom: 2rem;
-}
-
-.contact form {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-  border: 2px solid #ccc;
-  padding: 2rem;
-  border-radius: 5px;
-}
-
-.contact label {
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-.contact input[type="text"],
-.contact input[type="email"],
-.contact textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.contact textarea {
-  height: 10rem;
-}
-
-.contact button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.contact button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.contactContainer {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
+  color: black;
 }
 
 .about {
@@ -452,4 +407,5 @@ a.items:hover {
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
+  color: black;
 }

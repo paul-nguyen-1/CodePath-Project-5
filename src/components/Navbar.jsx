@@ -30,7 +30,7 @@ function Navbar({
       <div className={navbar ? "logoActive" : "logo"}>
         <Link to="/" style={{ color: "white" }}>
           {" "}
-          <h2>NeetSeat 🎟</h2>
+          <h2 style={{color:"black"}}>NeetSeat 🎟</h2>
         </Link>
       </div>
       <div className={navbar ? "navLinksActive" : "navLinks"}>
@@ -41,12 +41,12 @@ function Navbar({
             onChange={handleSearchEvent}
           />
         )}
-        <button onClick={handleSearchClick}>🔍 Search</button>
+        <button onClick={handleSearchClick} style={{backgroundColor:"white", color:"black"}}>🔍 Search</button>
         <Link to="/about">
-          <button>ℹ️ About</button>
+          <button style={{backgroundColor:"white", color:"black"}}>ℹ️ About</button>
         </Link>
         <Link to="/contact">
-          <button>🏠 Contact</button>
+          <button style={{backgroundColor:"white", color:"black"}}>🏠 Contact</button>
         </Link>
       </div>
     </div>
