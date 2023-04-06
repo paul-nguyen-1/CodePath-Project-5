@@ -146,7 +146,7 @@ function App() {
           handleSearchEvent={handleSearchEvent}
         />
       }
-      <div className="statsContainer">
+      {/* <div className="statsContainer">
         <div className="stat">
           <h2>Live Events:</h2>
           <h3>
@@ -169,7 +169,7 @@ function App() {
               : "Loading..."}
           </h3>
         </div>
-      </div>
+      </div> */}
 
       <div className="filterContainer">
         <button onClick={handleEventDate}>

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../App.css'
+import "../App.css";
+import Navbar from "../components/Navbar";
 
 function About() {
   return (
     <div className="about">
+      <Navbar />
       <h1>Lorem ipsum</h1>
       <h2>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

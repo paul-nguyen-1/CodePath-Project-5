@@ -45,20 +45,18 @@ body::-webkit-scrollbar {
 }
 
 .navbar {
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 80px;
   width: 100vw;
-  background-color: rgba(76, 76, 77, 0.506);
   overflow: hidden;
-  padding: 0 1rem;
   box-shadow: 2px 5px 5px rgba(76, 76, 77, 0.506);
 }
 
 .navbarActive {
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -109,7 +107,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  background-color: rgba(43, 43, 43, 0.821);
+
 }
 
 .content {
@@ -165,7 +163,7 @@ body::-webkit-scrollbar {
 
 .eventTitles {
   font-weight: bold;
-  background-color: #919191;
+ 
 }
 
 .eventColumn {
@@ -264,7 +262,7 @@ a.items:hover {
 }
 
 .eventDetails {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -275,13 +273,9 @@ a.items:hover {
     flex-direction: column;
     align-items: stretch;
   }
-  .contact,
-  .about {
-    margin-top: 200px !important;
-  }
 
   .eventDetails {
-    margin-top: 200px;
+    margin-top: 50px;
   }
 
   .eventItems:hover {
@@ -398,7 +392,6 @@ a.items:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
 }
 
 .contact h1 {
@@ -459,5 +452,4 @@ a.items:hover {
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  margin-top: 100px;
 }

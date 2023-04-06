@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <div>
       <div className="App">
-        <Navbar navbar={navbar} setNavbar={setNavbar} />
+        {/* <Navbar navbar={navbar} setNavbar={setNavbar} /> */}
       </div>
       <Outlet />
     </div>

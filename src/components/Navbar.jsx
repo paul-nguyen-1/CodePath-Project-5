@@ -8,22 +8,22 @@ function Navbar({
   handleSearchClick,
   searchFilter,
   navbar,
-  setNavbar,
   handleSearchEvent,
+  setNavbar,
 }) {
   //blur effect for navbar when scrolling
-  const changeBackground = () => {
-    // console.log("Changebackground called");
-    if (window.scrollY >= 20) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
-    }
-  };
+  // const changeBackground = () => {
+  //   // console.log("Changebackground called");
+  //   if (window.scrollY >= 20) {
+  //     setNavbar(true);
+  //   } else {
+  //     setNavbar(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("scroll", changeBackground);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", changeBackground);
+  // }, []);
 
   return (
     <div className={navbar ? "navbarActive" : "navbar"}>
