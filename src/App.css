@@ -126,14 +126,6 @@ body::-webkit-scrollbar {
  cursor:crosshair;
 }
 
-.stat:hover {
-  opacity: 0.6;
-}
-
-.stat:active {
-  transform: scale(1);
-}
-
 .eventContainer {
   width: 85%;
   display: flex;

@@ -23,6 +23,10 @@
   padding: 10px;
 }
 
+.subAttributes{
+display: flex;
+}
+
 .eventSub {
   display: flex;
   justify-content: space-between;
@@ -33,4 +37,14 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.eventSecondSub{
+  display: flex;
+}
+
+.eventAttribute {
+  border-radius: 10px;
+  padding: 0px 10px;
+  margin: 2.5px 2.5px;
 }

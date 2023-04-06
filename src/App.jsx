@@ -198,19 +198,11 @@ function App() {
       </div>
 
       <div className="eventContainer">
-        {/* <div className="eventRow eventTitles">
-          <div className="eventColumn">Event Type</div>
-          <div className="eventColumn">Date</div>
-          <div className="eventColumn">Performance</div>
-          <div className="eventColumn">Location</div>
-          <div className="eventColumn">Venue</div>
-          <div className="eventColumn">Lowest Price</div>
-          <div className="eventCol
-          umn"></div>
-        </div> */}
         <div className="stat">
           <h3>
-            {meta && meta.total ? meta.total.toLocaleString() + " events " : "Loading..."}
+            {meta && meta.total
+              ? meta.total.toLocaleString() + " events "
+              : "Loading..."}
           </h3>
         </div>
         {searchInput.length > 0
@@ -230,6 +222,8 @@ function App() {
                   id={list[event].id}
                   postal_code={list[event].venue.postal_code}
                   image={list[event].performers[0].image}
+                  first_performer={list[event].performers[1].name}
+                  second_performer={list[event].performers[2].name}
                 />
               ) : null
             )
@@ -250,6 +244,24 @@ function App() {
                   id={list[event].id}
                   postal_code={list[event].venue.postal_code}
                   image={list[event].performers[0].image}
+                  tickets={list[event].stats.visible_listing_count}
+                  performers={list[event].performers.length}
+                  first_performer={
+                    list[event].performers.length > 2 &&
+                    list[event].performers[1].name
+                  }
+                  second_performer={
+                    list[event].performers.length > 3 &&
+                    list[event].performers[2].name
+                  }
+                  third_performer={
+                    list[event].performers.length > 4 &&
+                    list[event].performers[3].name
+                  }
+                  fourth_performer={
+                    list[event].performers.length > 5 &&
+                    list[event].performers[4].name
+                  }
                 />
               ) : null
             )}

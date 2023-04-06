@@ -13,6 +13,11 @@ function Events({
   id,
   postal_code,
   image,
+  tickets,
+  first_performer,
+  second_performer,
+  third_performer,
+  fourth_performer,
 }) {
   const [performance, setPerformance] = useState(null);
 
@@ -36,6 +41,7 @@ function Events({
     window.location.href = `${url}`;
   }
 
+  // console.log("first_performer:", first_performer)
   return (
     <div>
       {performance ? (
@@ -49,8 +55,8 @@ function Events({
               <img
                 src={image}
                 style={{
-                  height: "50px",
-                  width: "50px",
+                  height: "75px",
+                  width: "75px",
                   border: "0.1px solid #D3D3D3",
                 }}
               />
@@ -59,37 +65,91 @@ function Events({
                   <div>
                     {title} @ {venue}
                   </div>
-                  <div>${price} USD</div>
+                  <div
+                    className="eventAttribute"
+                    style={{ color: "#01421c", backgroundColor: "#b9f5d0" }}
+                  >
+                    ${price} each
+                  </div>
                 </div>
                 <div className="eventSecondMain">
-                  <div>{event}</div>
-                  <div>
-                    {location} {date}
+                  <div className="subAttributes">
+                    <div
+                      className="eventAttribute"
+                      style={{ color: "#234E52", backgroundColor: "#B2F5EA" }}
+                    >
+                      {event}
+                    </div>
+                    <div
+                      className="eventAttribute"
+                      style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
+                    >
+                      {tickets} tickets left
+                    </div>
+
+                    {first_performer && (
+                      <div
+                        className="eventAttribute"
+                        style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
+                      >
+                        {first_performer}
+                      </div>
+                    )}
+                    {second_performer && (
+                      <div
+                        className="eventAttribute"
+                        style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
+                      >
+                        {second_performer}
+                      </div>
+                    )}
+                    {third_performer && (
+                      <div
+                        className="eventAttribute"
+                        style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
+                      >
+                        {third_performer}
+                      </div>
+                    )}
+                    {fourth_performer && (
+                      <div
+                        className="eventAttribute"
+                        style={{ color: "#1A202C", backgroundColor: "#EDF2F7" }}
+                      >
+                        {fourth_performer}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="eventSecondSub">
+                    <div
+                      className="eventAttribute"
+                      style={{ color: "#44337A", backgroundColor: "#E9D8FD" }}
+                    >
+                      {location}
+                    </div>
+                    <div
+                      className="eventAttribute"
+                      style={{ color: "#744210", backgroundColor: "#FEFCBF" }}
+                    >
+                      {date}
+                    </div>
                   </div>
                 </div>
               </div>
+              <button
+                className="eventColumn"
+                onClick={handleClick}
+                style={{
+                  color: "#646cff",
+                  height: "40px",
+                  width: "150px",
+                  alignSelf: "center",
+                }}
+              >
+                Tickets
+              </button>
             </div>
-
-            {/* <div className="eventColumn">{event}</div>
-            <div className="eventColumn">{date}</div>
-            <div className="eventColumn">{title}</div>
-            <div className="eventColumn">{location}</div>
-            <div className="eventColumn">{venue}</div>
-            <div className="eventColumn">
-              {price == null ? "Sold Out / Unavailable" : `$${price}`}
-            </div> */}
-            <button
-              className="eventColumn"
-              onClick={handleClick}
-              style={{
-                color: "#646cff",
-                height: "40px",
-                width: "150px",
-                alignSelf: "center",
-              }}
-            >
-              Tickets
-            </button>
           </Link>
         </div>
       ) : null}
