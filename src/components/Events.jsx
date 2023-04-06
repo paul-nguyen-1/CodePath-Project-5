@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./Events.css";
 
 function Events({
   event,
@@ -11,6 +12,7 @@ function Events({
   url,
   id,
   postal_code,
+  image,
 }) {
   const [performance, setPerformance] = useState(null);
 
@@ -41,21 +43,50 @@ function Events({
           <Link
             to={`/EventInfo/${id}/${postal_code}`}
             key={id}
-            className="eventRow eventItems"
-            style={{ color: "white", display: "flex" }}
+            className="events"
           >
-            <div className="eventColumn">{event}</div>
+            <div className="eventMain">
+              <img
+                src={image}
+                style={{
+                  height: "50px",
+                  width: "50px",
+                  border: "0.1px solid #D3D3D3",
+                }}
+              />
+              <div className="eventContainer">
+                <div className="eventSub">
+                  <div>
+                    {title} @ {venue}
+                  </div>
+                  <div>${price} USD</div>
+                </div>
+                <div className="eventSecondMain">
+                  <div>{event}</div>
+                  <div>
+                    {location} {date}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <div className="eventColumn">{event}</div>
             <div className="eventColumn">{date}</div>
             <div className="eventColumn">{title}</div>
             <div className="eventColumn">{location}</div>
             <div className="eventColumn">{venue}</div>
             <div className="eventColumn">
               {price == null ? "Sold Out / Unavailable" : `$${price}`}
-            </div>
+            </div> */}
             <button
               className="eventColumn"
               onClick={handleClick}
-              style={{ color: "#646cff", height: "50px" }}
+              style={{
+                color: "#646cff",
+                height: "40px",
+                width: "150px",
+                alignSelf: "center",
+              }}
             >
               Tickets
             </button>

@@ -48,7 +48,7 @@ function App() {
         `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_EVENT}`
       );
       const json = await response.json();
-      // console.log(json.events);
+      console.log(json.events);
       setMeta(json.meta);
       setList(json.events);
     };
@@ -198,14 +198,20 @@ function App() {
       </div>
 
       <div className="eventContainer">
-        <div className="eventRow eventTitles">
+        {/* <div className="eventRow eventTitles">
           <div className="eventColumn">Event Type</div>
           <div className="eventColumn">Date</div>
           <div className="eventColumn">Performance</div>
           <div className="eventColumn">Location</div>
           <div className="eventColumn">Venue</div>
           <div className="eventColumn">Lowest Price</div>
-          <div className="eventColumn"></div>
+          <div className="eventCol
+          umn"></div>
+        </div> */}
+        <div className="stat">
+          <h3>
+            {meta && meta.total ? meta.total.toLocaleString() + " events " : "Loading..."}
+          </h3>
         </div>
         {searchInput.length > 0
           ? filteredResults.map((event) =>
@@ -223,6 +229,7 @@ function App() {
                   url={list[event].url}
                   id={list[event].id}
                   postal_code={list[event].venue.postal_code}
+                  image={list[event].performers[0].image}
                 />
               ) : null
             )
@@ -242,6 +249,7 @@ function App() {
                   url={list[event].url}
                   id={list[event].id}
                   postal_code={list[event].venue.postal_code}
+                  image={list[event].performers[0].image}
                 />
               ) : null
             )}
