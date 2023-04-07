@@ -4,6 +4,7 @@ import Events from "./components/Events";
 import Navbar from "./components/Navbar";
 import { Input } from "semantic-ui-react";
 import ReactPaginate from "react-paginate";
+import Categories from "./components/Categories";
 
 function App() {
   const [searchFilter, setSearchFilter] = useState(false);
@@ -17,6 +18,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [scoreEventChoice, setScoreEventChoice] = useState(true);
+
+  //Categories
+  const [categories, setCategories] = useState(false);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -139,13 +143,17 @@ function App() {
   const totalPages = meta && Math.ceil(meta.total / 10);
 
   //Selecting date and popularity asc/desc
-  function handleOptionChange(value) {
+  const handleOptionChange = (value) => {
     if (value === "date") {
       handleEventDate();
     } else if (value === "score") {
       handleScore();
     }
-  }
+  };
+
+  const handleCategories = () => {
+    setCategories(true);
+  };
 
   return (
     <div className="App">
@@ -183,10 +191,11 @@ function App() {
         </div>
       </div> */}
 
-      <div className="filterContainer">
-        <button onClick={handleEventDate}>Categories</button>
+      {/* <div className="filterContainer"> */}
+        {/* <button onClick={handleCategories}>Categories</button>
+        {categories && <Categories setCategories={setCategories} />}
         <button onClick={handleScore}>City</button>
-        <button>Pricing</button>
+        <button>Pricing</button> */}
         {/* <Input
           type="number"
           value={lowestTicket}
@@ -197,14 +206,14 @@ function App() {
           placeholder="Price Filter"
           className="my-range-input"
         /> */}
-        <button>Date</button>
+        {/* <button>Date</button> */}
         {/* <input
           className="cityInput"
           type="text"
           placeholder="Enter city here"
           onChange={handleCityChange}
         /> */}
-      </div>
+      {/* </div> */}
 
       <div className="eventContainer">
         <div className="stat">
