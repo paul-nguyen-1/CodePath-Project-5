@@ -464,7 +464,7 @@ a.items:hover {
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
   .festival {
     position: relative;
     left: 20px;
@@ -480,3 +480,38 @@ a.items:hover {
     width: 110px;
   }
 }
+
+  @media screen and (max-width: 450px) {
+    .festival {
+      position: relative;
+      left: 20px;
+      height: 305px;
+      width: 285px;
+    }
+
+    .concert {
+      position: absolute;
+      left: 275px;
+      top: 350px;
+      height: 150px;
+      width: 110px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .festival {
+      position: relative;
+      left: 20px;
+      height: 305px;
+      width: 285px;
+    }
+
+    .concert {
+      position: absolute;
+      left: 250px;
+      top: 310px;
+      height: 150px;
+      width: 110px;
+    }
+  }
+
