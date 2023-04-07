@@ -75,6 +75,13 @@
     justify-content: center;
   }
 
+  .stat{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .events {
     font-size: 13px;
   }

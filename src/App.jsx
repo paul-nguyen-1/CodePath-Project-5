@@ -11,13 +11,12 @@ function App() {
   const [meta, setMeta] = useState(null);
   const [navbar, setNavbar] = useState(false);
   const [city, setCity] = useState("");
-  const [eventDate, setEventDate] = useState(null);
-  const [score, setScore] = useState(null);
+  const [sorting, setSorting] = useState(true);
   const [lowestTicket, setLowestTicket] = useState(0);
   const [postPerPage, setPostPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [scoreEventChoice, setScoreEventChoice] = useState(null);
+  const [scoreEventChoice, setScoreEventChoice] = useState(true);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -29,10 +28,9 @@ function App() {
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_CLIENT = import.meta.env.VITE_API_CLIENT;
   const ASSERT_TICKET_PRICING = `&lowest_price.gt=${lowestTicket}`;
-  const eventDateOrder = eventDate ? "asc" : "desc";
-  const scoreOrder = score ? "asc" : "desc";
-  const EVENT_DATE = `&sort=datetime_utc.${eventDateOrder}`;
-  const SCORE_ORDER = `&sort=score.${scoreOrder}`;
+  const sortOrder = sorting ? "asc" : "desc";
+  const EVENT_DATE = `&sort=datetime_utc.${sortOrder}`;
+  const SCORE_ORDER = `&sort=score.${sortOrder}`;
   const SCORE_EVENT = scoreEventChoice ? EVENT_DATE : SCORE_ORDER;
 
   //Enable search filter on nav
@@ -101,16 +99,21 @@ function App() {
     }
   }
 
-  //Changes date to either the closest date or furthest
+  //Sort by date
   const handleEventDate = () => {
-    setEventDate(!eventDate);
     setScoreEventChoice(true);
+    setSorting(true);
   };
 
-  //Change score from most popular to least popular
+  //Sort by popularity
   const handleScore = () => {
-    setScore(!score);
     setScoreEventChoice(false);
+    setSorting(false);
+  };
+
+  //Sort asc/desc
+  const handleSorting = () => {
+    setSorting(!sorting);
   };
 
   //Ticket pricing
@@ -134,6 +137,15 @@ function App() {
   };
 
   const totalPages = meta && Math.ceil(meta.total / 10);
+
+  //Selecting date and popularity asc/desc
+  function handleOptionChange(value) {
+    if (value === "date") {
+      handleEventDate();
+    } else if (value === "score") {
+      handleScore();
+    }
+  }
 
   return (
     <div className="App">
@@ -172,13 +184,10 @@ function App() {
       </div> */}
 
       <div className="filterContainer">
-        <button onClick={handleEventDate}>
-          {eventDate ? "Most Recent" : "Plan in Advance!"}
-        </button>
-        <button onClick={handleScore} style={{ marginRight: "25px" }}>
-          {score ? "Least Popular" : "Most Popular"}
-        </button>
-        <Input
+        <button onClick={handleEventDate}>Categories</button>
+        <button onClick={handleScore}>City</button>
+        <button>Pricing</button>
+        {/* <Input
           type="number"
           value={lowestTicket}
           min={0}
@@ -187,23 +196,44 @@ function App() {
           onChange={handleTicketPrice}
           placeholder="Price Filter"
           className="my-range-input"
-        />
-
-        <input
+        /> */}
+        <button>Date</button>
+        {/* <input
           className="cityInput"
           type="text"
           placeholder="Enter city here"
           onChange={handleCityChange}
-        />
+        /> */}
       </div>
 
       <div className="eventContainer">
         <div className="stat">
-          <h3 style={{ fontSize: "24px" }}>
-            {meta && meta.total
-              ? meta.total.toLocaleString() + " events "
-              : "Loading..."}
-          </h3>
+          <div>
+            <h3 style={{ fontSize: "24px" }}>
+              {meta && meta.total
+                ? meta.total.toLocaleString() + " events "
+                : "Loading..."}
+            </h3>
+          </div>
+          <div className="sort">
+            <p style={{ cursor: "pointer" }} onClick={handleSorting}>
+              ↑↓
+            </p>
+            <select
+              style={{
+                backgroundColor: "white",
+                width: "95px",
+                height: "25px",
+                color: "black",
+                marginLeft: "10px",
+                border: "1px solid #D3D3D3",
+              }}
+              onChange={(e) => handleOptionChange(e.target.value)}
+            >
+              <option value="date">Date</option>
+              <option value="score">Popularity</option>
+            </select>
+          </div>
         </div>
         {searchInput.length > 0
           ? filteredResults.map((event) =>
