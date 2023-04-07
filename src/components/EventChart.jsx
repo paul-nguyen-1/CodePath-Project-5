@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import {
-  BarChart,
-  Bar,
-  Cell,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
+  Tooltip,
+  Legend,
   ResponsiveContainer,
 } from "recharts";
 import "../App.css";
@@ -39,59 +40,27 @@ function EventChart({ id, postal_code, index }) {
   const data = [
     {
       name: "Average Price",
-      uv: eventData && eventData[index].event.stats.average_price,
-      value: "price",
+      value: eventData && eventData[index].event.stats.average_price,
     },
     {
       name: "Median Price",
-      uv: eventData && eventData[index].event.stats.median_price,
-      value: "price",
+      value: eventData && eventData[index].event.stats.median_price,
     },
     {
       name: "Lowest Price",
-      uv:
+      value:
         eventData &&
         eventData[index].event.stats.lowest_sg_base_price_good_deals,
-      value: "price",
     },
     {
       name: "Good Deal",
-      uv: eventData && eventData[index].event.stats.lowest_price_good_deals,
-      value: "price",
+      value: eventData && eventData[index].event.stats.lowest_price_good_deals,
     },
     {
       name: "Listing Count",
-      uv: eventData && eventData[index].event.stats.listing_count,
-      value: "listing",
+      value: eventData && eventData[index].event.stats.listing_count,
     },
   ];
-
-  const getPath = (x, y, width, height) => {
-    return `M${x},${y + height}C${x + width / 3},${y + height} ${
-      x + width / 2
-    },${y + height / 3}
-    ${x + width / 2}, ${y}
-    C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${
-      x + width
-    }, ${y + height}
-    Z`;
-  };
-
-  const TriangleBar = (props) => {
-    const { fill, x, y, width, height } = props;
-
-    return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
-  };
-
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeItem = data[activeIndex];
-
-  const handleClick = useCallback(
-    function (entry, index) {
-      setActiveIndex(index);
-    },
-    [setActiveIndex]
-  );
 
   return (
     <div className="content">
@@ -100,40 +69,24 @@ function EventChart({ id, postal_code, index }) {
         height={200}
         style={{ cursor: "pointer" }}
       >
-        <BarChart
+        <LineChart
+          width={730}
+          height={250}
           data={data}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-          <Bar
-            dataKey="uv"
-            fill="#8884d8"
-            shape={<TriangleBar />}
-            label={{ position: "top" }}
-            onClick={handleClick}
-          >
-            {data.map((entry, index) => (
-              <Cell
-                cursor="pointer"
-                key={`cell-${index}`}
-                fill={index === activeIndex ? "#82ca9d" : colors[index % 20]}
-              />
-            ))}
-          </Bar>
-        </BarChart>
+          <Tooltip label="name" labelStyle={{color:"#82ca9d"}} />
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="#82ca9d"
+            activeDot={{ r: 5 }}
+          />
+        </LineChart>
       </ResponsiveContainer>
-      <h3 className="content" style={{color:"gray"}}>{`${activeItem.name}: ${eventData && data[activeIndex].value == "price" ? "$" : ""}${
-        activeItem.uv && activeItem.uv.toLocaleString()
-      } ${
-        eventData && data[activeIndex].value === "listing" ? "tickets" : ""
-      }`}</h3>
     </div>
   );
 }

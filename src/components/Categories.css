@@ -3,8 +3,8 @@
   position: fixed;
   flex-direction: column;
   top: 25%;
-  height: 200px;
-  width: 650px;
+  height: 175px;
+  width: 250px;
   border-radius: 10px;
   background-color: gray;
 }
@@ -16,29 +16,37 @@
 }
 
 .selectCategory {
-  height: 20%;
-  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-self: center;
-  border: 1px solid black;
+  margin-bottom: 25px;
+}
+
+.selectCategory input {
   border-radius: 10px;
+}
+
+.split {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid black;
+}
+
+.split p {
   cursor: pointer;
-  padding-right: 15px;
-}
-
-.downCategory {
-  font-size: 24px;
-}
-
-.selectCategory p {
-  padding-left: 25px;
 }
 
 .categoryClear {
   display: flex;
   align-items: center;
-  padding: 20px;
-  border-top: 1px solid gray;
+}
+
+.chooseCategory {
+  position: fixed;
+  top: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

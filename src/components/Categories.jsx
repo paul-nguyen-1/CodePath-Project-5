@@ -1,7 +1,7 @@
 import React from "react";
 import "./Categories.css";
 
-function Categories({ setCategories }) {
+function Categories({ setCategories, handleSearchEvent, handleClearSearch }) {
   const exitCategories = () => {
     setCategories(false);
   };
@@ -15,10 +15,18 @@ function Categories({ setCategories }) {
         </p>
       </div>
       <div className="selectCategory">
-        <p>Select Categories</p>
-        <p className="downCategory">⌄</p>
+        <input
+          type="text"
+          placeholder="Enter event"
+          onChange={handleSearchEvent}
+        />
       </div>
-      <p className="categoryClear">Clear</p>
+      <div className="split">
+        <p className="categoryClear" onClick={handleClearSearch}>
+          Clear
+        </p>
+        <p onClick={exitCategories}>Done</p>
+      </div>
     </div>
   );
 }

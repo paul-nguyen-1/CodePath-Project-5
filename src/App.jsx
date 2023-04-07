@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { Input } from "semantic-ui-react";
 import ReactPaginate from "react-paginate";
 import Categories from "./components/Categories";
+import Cities from "./components/Cities";
 
 function App() {
   const [searchFilter, setSearchFilter] = useState(false);
@@ -19,8 +20,9 @@ function App() {
   const [search, setSearch] = useState("");
   const [scoreEventChoice, setScoreEventChoice] = useState(true);
 
-  //Categories
+  //State for filter components
   const [categories, setCategories] = useState(false);
+  const [cities, setCities] = useState(false);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -55,7 +57,14 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [SCORE_EVENT, lowestTicket, city, search, currentPage, postPerPage]);
+  }, [
+    SCORE_EVENT,
+    lowestTicket,
+    city,
+    search,
+    currentPage,
+    postPerPage,
+  ]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -130,9 +139,21 @@ function App() {
     setCity(e.target.value);
   };
 
+  //Clear input for city
+  const handleClearCity = () => {
+    setCity("");
+    setCities(false);
+  };
+
   //Event Search
   const handleSearchEvent = (e) => {
     setSearch(e.target.value);
+  };
+
+  //Clear input for taxonomy
+  const handleClearSearch = () => {
+    setSearch("");
+    setCategories(false);
   };
 
   //Change Pages issue resolved // come back if needed -- https://github.com/AdeleD/react-paginate/issues/167
@@ -155,6 +176,10 @@ function App() {
     setCategories(true);
   };
 
+  const handleCities = () => {
+    setCities(true);
+  };
+
   return (
     <div className="App">
       {
@@ -166,36 +191,26 @@ function App() {
           handleSearchEvent={handleSearchEvent}
         />
       }
-      {/* <div className="statsContainer">
-        <div className="stat">
-          <h2>Live Events:</h2>
-          <h3>
-            {meta && meta.total ? meta.total.toLocaleString() : "Loading..."}
-          </h3>
-        </div>
-        <div className="stat">
-          <h2>Average Price:</h2>
-          <h3>
-            {average_price
-              ? `$${average_price.toLocaleString()}`
-              : "Loading..."}
-          </h3>
-        </div>
-        <div className="stat">
-          <h2>Price Range:</h2>
-          <h3>
-            {lowestPrice != Infinity
-              ? `$${lowestPrice.toLocaleString()} - $${highestPrice.toLocaleString()}`
-              : "Loading..."}
-          </h3>
-        </div>
-      </div> */}
 
-      {/* <div className="filterContainer"> */}
-        {/* <button onClick={handleCategories}>Categories</button>
-        {categories && <Categories setCategories={setCategories} />}
-        <button onClick={handleScore}>City</button>
-        <button>Pricing</button> */}
+      <div className="filterContainer">
+        <button onClick={handleCategories}>Categories</button>
+        {categories && (
+          <Categories
+            setCategories={setCategories}
+            handleSearchEvent={handleSearchEvent}
+            handleClearSearch={handleClearSearch}
+          />
+        )}
+        <button onClick={handleCities}>City</button>
+        {cities && (
+          <Cities
+            setCities={setCities}
+            handleCityChange={handleCityChange}
+            handleClearCity={handleClearCity}
+          />
+        )}
+        <button>Pricing</button>
+        <button>Per Page</button>
         {/* <Input
           type="number"
           value={lowestTicket}
@@ -206,14 +221,7 @@ function App() {
           placeholder="Price Filter"
           className="my-range-input"
         /> */}
-        {/* <button>Date</button> */}
-        {/* <input
-          className="cityInput"
-          type="text"
-          placeholder="Enter city here"
-          onChange={handleCityChange}
-        /> */}
-      {/* </div> */}
+      </div>
 
       <div className="eventContainer">
         <div className="stat">
