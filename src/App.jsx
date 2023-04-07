@@ -172,6 +172,21 @@ function App() {
     }
   };
 
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber === "10") {
+      setPostPerPage(10);
+    }
+    if (pageNumber === "25") {
+      setPostPerPage(25);
+    }
+    if (pageNumber === "50") {
+      setPostPerPage(50);
+    }
+    if (pageNumber === "75") {
+      setPostPerPage(75);
+    }
+  };
+
   const handleCategories = () => {
     setCategories(true);
     setCities(false);
@@ -257,6 +272,22 @@ function App() {
             >
               <option value="date">Date</option>
               <option value="score">Popularity</option>
+            </select>
+            <select
+              style={{
+                backgroundColor: "white",
+                width: "50px",
+                height: "25px",
+                color: "black",
+                marginLeft: "10px",
+                border: "1px solid #D3D3D3",
+              }}
+              onChange={(e) => handlePageChange(e.target.value)}
+            >
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="75">75</option>
             </select>
           </div>
         </div>
