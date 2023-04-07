@@ -481,37 +481,129 @@ a.items:hover {
   }
 }
 
-  @media screen and (max-width: 450px) {
-    .festival {
-      position: relative;
-      left: 20px;
-      height: 305px;
-      width: 285px;
-    }
-
-    .concert {
-      position: absolute;
-      left: 275px;
-      top: 350px;
-      height: 150px;
-      width: 110px;
-    }
+@media screen and (max-width: 450px) {
+  .festival {
+    position: relative;
+    left: 20px;
+    height: 305px;
+    width: 285px;
   }
 
-  @media screen and (max-width: 400px) {
-    .festival {
-      position: relative;
-      left: 20px;
-      height: 305px;
-      width: 285px;
-    }
+  .concert {
+    position: absolute;
+    left: 275px;
+    top: 350px;
+    height: 150px;
+    width: 110px;
+  }
+}
 
-    .concert {
-      position: absolute;
-      left: 250px;
-      top: 310px;
-      height: 150px;
-      width: 110px;
-    }
+@media screen and (max-width: 400px) {
+  .festival {
+    position: relative;
+    left: 20px;
+    height: 305px;
+    width: 285px;
   }
 
+  .concert {
+    position: absolute;
+    left: 250px;
+    top: 310px;
+    height: 150px;
+    width: 110px;
+  }
+}
+
+.contactHeaders {
+  color: black;
+  text-align: center;
+  padding: 50px 0px;
+  line-height: 15px;
+}
+
+.contactHeaders h1 {
+  font-size: 2rem;
+}
+.contactHeaders h2 {
+  font-size: 24px;
+  font-weight: normal;
+  color: rgba(18, 18, 18, 0.647);
+}
+
+.contactContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 50px;
+}
+
+.contactCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column wrap;
+  color: black;
+  width: 30%;
+  height: 350px;
+  margin: 0px 20px;
+  border: 0.1px solid rgba(128, 128, 128, 0.263);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px -15px 7px rgba(50, 50, 50, 0.75);
+}
+
+.contactCard p {
+  color: rgba(87, 87, 87, 0.613);
+  padding: 0px 50px;
+}
+
+@media screen and (max-width: 860px) {
+  .contactHeaders {
+    line-height: 25px;
+  }
+
+  .contactContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contactCard {
+    width: 75%;
+    margin: 50px 0px;
+  }
+}
+
+@media screen and (max-width: 1360px){
+  .contactCard{
+    margin: 15px;
+    padding: 0px 10px
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .contact {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .contact {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .contact {
+    font-size: 10px;
+  }
+
+  .contactCard button {
+    width: 75px;
+  }
+}
