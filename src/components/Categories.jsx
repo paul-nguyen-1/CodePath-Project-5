@@ -9,7 +9,7 @@ function Categories({ setCategories, handleSearchEvent, handleClearSearch }) {
   return (
     <div className="categories">
       <div className="categoryHeader">
-        <h3>Category</h3>
+        <h3>Events</h3>
         <p onClick={exitCategories} style={{ cursor: "pointer" }}>
           x
         </p>

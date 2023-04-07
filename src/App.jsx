@@ -6,6 +6,7 @@ import { Input } from "semantic-ui-react";
 import ReactPaginate from "react-paginate";
 import Categories from "./components/Categories";
 import Cities from "./components/Cities";
+import Pricing from "./components/Pricing";
 
 function App() {
   const [searchFilter, setSearchFilter] = useState(false);
@@ -23,6 +24,7 @@ function App() {
   //State for filter components
   const [categories, setCategories] = useState(false);
   const [cities, setCities] = useState(false);
+  const [pricing, setPricing] = useState(false);
 
   //Filter
   const [filteredResults, setFilteredResults] = useState([]);
@@ -57,14 +59,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
-  }, [
-    SCORE_EVENT,
-    lowestTicket,
-    city,
-    search,
-    currentPage,
-    postPerPage,
-  ]);
+  }, [SCORE_EVENT, lowestTicket, city, search, currentPage, postPerPage]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -156,6 +151,11 @@ function App() {
     setCategories(false);
   };
 
+  const handleClearPricing = () => {
+    setLowestTicket(0);
+    setPricing(false);
+  };
+
   //Change Pages issue resolved // come back if needed -- https://github.com/AdeleD/react-paginate/issues/167
   const changePage = ({ selected }) => {
     setCurrentPage(Math.ceil(selected + 1));
@@ -174,10 +174,20 @@ function App() {
 
   const handleCategories = () => {
     setCategories(true);
+    setCities(false);
+    setPricing(false);
   };
 
   const handleCities = () => {
     setCities(true);
+    setCategories(false);
+    setPricing(false);
+  };
+
+  const handlePricing = () => {
+    setPricing(true);
+    setCities(false);
+    setCategories(false);
   };
 
   return (
@@ -193,7 +203,7 @@ function App() {
       }
 
       <div className="filterContainer">
-        <button onClick={handleCategories}>Categories</button>
+        <button onClick={handleCategories}>Events</button>
         {categories && (
           <Categories
             setCategories={setCategories}
@@ -209,18 +219,16 @@ function App() {
             handleClearCity={handleClearCity}
           />
         )}
-        <button>Pricing</button>
-        <button>Per Page</button>
-        {/* <Input
-          type="number"
-          value={lowestTicket}
-          min={0}
-          max={highestPrice}
-          step={5}
-          onChange={handleTicketPrice}
-          placeholder="Price Filter"
-          className="my-range-input"
-        /> */}
+        <button onClick={handlePricing}>Pricing</button>
+        {pricing && (
+          <Pricing
+            setPricing={setPricing}
+            lowestTicket={lowestTicket}
+            max={highestPrice}
+            handleTicketPrice={handleTicketPrice}
+            handleClearPricing={handleClearPricing}
+          />
+        )}
       </div>
 
       <div className="eventContainer">
