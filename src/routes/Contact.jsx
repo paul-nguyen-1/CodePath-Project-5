@@ -20,29 +20,39 @@ function Contact() {
             Are you interested in our latest news or working on an event and
             need to get in touch?
           </p>
-          <button   style={{
+          <button
+            style={{
               border: "2px solid #0BC5EA",
               color: "#0BC5EA",
               borderRadius: "45px",
               backgroundColor: "white",
-            }}>Visit Press Page</button>
+            }}
+          >
+            Visit Press Page
+          </button>
         </div>
         <div
           className="help contactCard"
-          style={{ boxShadow: "0px -10px 5px #3cdd78", height:"400px" }}
+          style={{ boxShadow: "0px -10px 5px #3cdd78", height: "400px" }}
         >
           <h2>Help & Support</h2>
           <p>
             Our support team is spread across the globe to give you answers
             fast.
           </p>
-          <button   style={{
+          <button
+            style={{
               border: "2px solid #3cdd78",
               color: "white",
               borderRadius: "45px",
               backgroundColor: "#3cdd78",
-            }}>Visit Support Page</button>
-          <h5 style={{color:"#3cdd78"}}>SUBMIT A REQUEST</h5>
+            }}
+          >
+            Visit Support Page
+          </button>
+          <h5 style={{ color: "#3cdd78", cursor: "pointer" }}>
+            SUBMIT A REQUEST
+          </h5>
         </div>
         <div
           className="sales contactCard"

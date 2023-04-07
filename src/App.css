@@ -172,9 +172,6 @@ a.items:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .eventColumn {
-    flex-basis: 100%;
-  }
   .eventRow {
     flex-wrap: wrap;
   }
@@ -326,23 +323,22 @@ a.items:hover {
 }
 
 .paginationBttns a {
+  border-radius: 150px;
   padding: 12px;
   margin: 10px;
-  border-radius: 5px;
-  border: 1px solid rgba(90, 90, 90, 0.62);
   color: black;
   cursor: pointer;
   width: 100%;
 }
 
 .paginationBttns a:hover {
-  color: white;
-  background-color: #222229a7;
+  color: black;
+  background-color: #9e97975e;
 }
 
 .paginationActive a {
   color: white;
-  background-color: #bfbfbf74;
+  background-color: #000000db;
 }
 
 .paginationDisabled a {
@@ -579,10 +575,10 @@ a.items:hover {
   }
 }
 
-@media screen and (max-width: 1360px){
-  .contactCard{
+@media screen and (max-width: 1360px) {
+  .contactCard {
     margin: 15px;
-    padding: 0px 10px
+    padding: 0px 10px;
   }
 }
 
