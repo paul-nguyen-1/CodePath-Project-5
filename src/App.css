@@ -371,8 +371,112 @@ a.items:hover {
 
 .about {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  color: black;
+}
+
+.aboutContainer {
+  margin: 35px 50px;
+}
+
+.aboutMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.festival {
+  height: 475px;
+  width: 550px;
+  opacity: 0.8;
+}
+
+.festival:hover {
+  opacity: 1;
+  transform: scale(0.95);
+}
+
+.concert {
+  position: absolute;
+  height: 255px;
+  width: 255px;
+  opacity: 0.6;
+  left: 425px;
+  top: 200px;
+}
+
+.concert:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.aboutDescription {
+  display: flex;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  flex-flow: column wrap;
-  color: black;
+  margin: 0px 80px;
+}
+
+@media screen and (max-width: 1120px) {
+  .aboutMain {
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  .festival {
+    position: relative;
+    left: 150px;
+  }
+
+  .concert {
+    position: relative;
+    left: -75px;
+    top: -100px;
+  }
+
+  .aboutContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0px;
+  }
+
+  .aboutDescription {
+    padding: 50px 10px;
+    position: relative;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .festival {
+    left: 87.5px;
+    height: 375px;
+    width: 325px;
+  }
+
+  .concert {
+    left: -25px;
+    height: 180px;
+    width: 125px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .festival {
+    position: relative;
+    left: 20px;
+    height: 305px;
+    width: 285px;
+  }
+
+  .concert {
+    position: absolute;
+    left: 250px;
+    top: 300px;
+    height: 150px;
+    width: 110px;
+  }
 }

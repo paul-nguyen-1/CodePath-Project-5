@@ -64,11 +64,6 @@ function EventChart({ id, postal_code, index }) {
       uv: eventData && eventData[index].event.stats.listing_count,
       value: "listing",
     },
-    {
-      name: "Visible Listing Count",
-      uv: eventData && eventData[index].event.stats.listing_count,
-      value: "listing",
-    },
   ];
 
   const getPath = (x, y, width, height) => {
