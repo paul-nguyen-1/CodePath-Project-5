@@ -1,13 +1,14 @@
 import React from "react";
 import "./Categories.css";
 
-function Categories({ setCategories, handleSearchEvent, handleClearSearch }) {
+function Categories({ setCategories, handleSearchEvent, handleClearSearch, setOverlay }) {
   const exitCategories = () => {
     setCategories(false);
+    setOverlay(false);
   };
 
   return (
-    <div className="categories">
+    <div className="categories" style={{outline:'none'}}>
       <div className="categoryHeader">
         <h3>Events</h3>
         <p onClick={exitCategories} style={{ cursor: "pointer" }}>

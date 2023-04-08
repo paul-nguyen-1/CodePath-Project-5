@@ -20,6 +20,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [scoreEventChoice, setScoreEventChoice] = useState(true);
+  const [overlay, setOverlay] = useState(false);
 
   //State for filter components
   const [categories, setCategories] = useState(false);
@@ -60,6 +61,12 @@ function App() {
     };
     fetchAllEvents().catch(console.error);
   }, [SCORE_EVENT, lowestTicket, city, search, currentPage, postPerPage]);
+
+  //No Scroll when overlay is on
+  useEffect(() => {
+    if (overlay) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "visible";
+  }, [overlay]);
 
   //Get Average Price of Events
   let total_price = 0;
@@ -134,26 +141,29 @@ function App() {
     setCity(e.target.value);
   };
 
+  //Event Search
+  const handleSearchEvent = (e) => {
+    setSearch(e.target.value);
+  };
+
   //Clear input for city
   const handleClearCity = () => {
     setCity("");
     setCities(false);
-  };
-
-  //Event Search
-  const handleSearchEvent = (e) => {
-    setSearch(e.target.value);
+    setOverlay(false);
   };
 
   //Clear input for taxonomy
   const handleClearSearch = () => {
     setSearch("");
     setCategories(false);
+    setOverlay(false);
   };
 
   const handleClearPricing = () => {
     setLowestTicket(0);
     setPricing(false);
+    setOverlay(false);
   };
 
   //Change Pages issue resolved // come back if needed -- https://github.com/AdeleD/react-paginate/issues/167
@@ -189,18 +199,21 @@ function App() {
 
   const handleCategories = () => {
     setCategories(true);
+    setOverlay(true);
     setCities(false);
     setPricing(false);
   };
 
   const handleCities = () => {
     setCities(true);
+    setOverlay(true);
     setCategories(false);
     setPricing(false);
   };
 
   const handlePricing = () => {
     setPricing(true);
+    setOverlay(true);
     setCities(false);
     setCategories(false);
   };
@@ -216,7 +229,7 @@ function App() {
           handleSearchEvent={handleSearchEvent}
         />
       }
-
+      {overlay && <div className="overlay"> </div>}
       <div className="filterContainer">
         <button onClick={handleCategories}>Events</button>
         {categories && (
@@ -224,6 +237,7 @@ function App() {
             setCategories={setCategories}
             handleSearchEvent={handleSearchEvent}
             handleClearSearch={handleClearSearch}
+            setOverlay={setOverlay}
           />
         )}
         <button onClick={handleCities}>City</button>
@@ -232,6 +246,7 @@ function App() {
             setCities={setCities}
             handleCityChange={handleCityChange}
             handleClearCity={handleClearCity}
+            setOverlay={setOverlay}
           />
         )}
         <button onClick={handlePricing}>Pricing</button>
@@ -242,6 +257,7 @@ function App() {
             max={highestPrice}
             handleTicketPrice={handleTicketPrice}
             handleClearPricing={handleClearPricing}
+            setOverlay={setOverlay}
           />
         )}
       </div>
