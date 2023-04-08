@@ -11,7 +11,7 @@ function Cities({ setCities, handleCityChange, handleClearCity, setOverlay }) {
     <div className="categories">
       <div className="categoryHeader">
         <h3>City</h3>
-        <p onClick={exitCities} style={{ cursor: "pointer" }}>
+        <p onClick={exitCities} className="closeCategory">
           x
         </p>
       </div>
@@ -26,7 +26,7 @@ function Cities({ setCities, handleCityChange, handleClearCity, setOverlay }) {
         <p className="categoryClear" onClick={handleClearCity}>
           Clear
         </p>
-        <p onClick={exitCities}>Done</p>
+        <p onClick={exitCities} className="categoryDone">Done</p>
       </div>
     </div>
   );

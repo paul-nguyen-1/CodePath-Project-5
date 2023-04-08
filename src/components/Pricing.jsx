@@ -18,7 +18,7 @@ function Pricing({
     <div className="categories">
       <div className="categoryHeader">
         <h3>Price</h3>
-        <p onClick={handleExitPricing} style={{ cursor: "pointer" }}>
+        <p onClick={handleExitPricing} className="closeCategory">
           x
         </p>
       </div>
@@ -37,7 +37,7 @@ function Pricing({
         <p className="categoryClear" onClick={handleClearPricing}>
           Clear
         </p>
-        <p onClick={handleExitPricing}>Done</p>
+        <p onClick={handleExitPricing} className="categoryDone">Done</p>
       </div>
     </div>
   );

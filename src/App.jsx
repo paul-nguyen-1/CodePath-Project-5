@@ -218,6 +218,12 @@ function App() {
     setCategories(false);
   };
 
+  const clearFilters = () => {
+    setCity("");
+    setLowestTicket(0);
+    setSearch("");
+  };
+
   return (
     <div className="App">
       {
@@ -260,6 +266,7 @@ function App() {
             setOverlay={setOverlay}
           />
         )}
+        <button onClick={clearFilters}>Clear All</button>
       </div>
 
       <div className="eventContainer">

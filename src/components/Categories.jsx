@@ -11,7 +11,7 @@ function Categories({ setCategories, handleSearchEvent, handleClearSearch, setOv
     <div className="categories" style={{outline:'none'}}>
       <div className="categoryHeader">
         <h3>Events</h3>
-        <p onClick={exitCategories} style={{ cursor: "pointer" }}>
+        <p onClick={exitCategories} className="closeCategory">
           x
         </p>
       </div>
@@ -26,7 +26,7 @@ function Categories({ setCategories, handleSearchEvent, handleClearSearch, setOv
         <p className="categoryClear" onClick={handleClearSearch}>
           Clear
         </p>
-        <p onClick={exitCategories}>Done</p>
+        <p onClick={exitCategories} className="categoryDone">Done</p>
       </div>
     </div>
   );
