@@ -55,7 +55,6 @@ function App() {
         `${BASE_URL}${city}&${API_CLIENT}${API_KEY}${AMOUNT_PER_PAGE}${ASSERT_TICKET_PRICING}${SCORE_EVENT}`
       );
       const json = await response.json();
-      console.log(json.events);
       setMeta(json.meta);
       setList(json.events);
     };
@@ -280,7 +279,7 @@ function App() {
           </div>
           <div className="sort">
             <p style={{ cursor: "pointer" }} onClick={handleSorting}>
-              ↑↓
+               {sorting ? '↑↓' : '↓↑'}
             </p>
             <select
               style={{

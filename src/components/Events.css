@@ -21,7 +21,6 @@
 .eventContainer {
   display: flex;
   width: 90%;
-  padding: 10px;
 }
 
 .subAttributes {
