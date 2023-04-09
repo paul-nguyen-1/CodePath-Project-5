@@ -20,6 +20,10 @@ body::-webkit-scrollbar {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.hamburgerLinks {
+  display: none;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -178,12 +182,16 @@ a.items:hover {
   font-style: regular;
 }
 
+.navHamburger {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .eventRow {
     flex-wrap: wrap;
   }
   .navbar {
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0;
   }
 
@@ -246,6 +254,45 @@ a.items:hover {
     flex-direction: row;
   }
 
+  .navHamburger {
+    display: flex;
+    padding-right: 35px;
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+  }
+
+  .navHamburger .icon {
+    position: absolute;
+    top: -12px;
+    left: -5px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .navHamburger:hover {
+    transform: scale(1.5);
+  }
+
+  .navHamburger .icon.hidden {
+    opacity: 0;
+  }
+
+  .hamburgerLinks {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    flex-flow: column wrap;
+    background-color: rgba(85, 85, 85, 0.465);
+    z-index: 1;
+    font-size: 16px;
+  }
+
   .filterContainer button {
     margin: 5px 10px;
   }
@@ -292,20 +339,12 @@ a.items:hover {
     display: none;
   }
 
-  .navbar {
-    height: 25vh;
-  }
-
   .navbarActive,
   .navLinksActive {
     display: none;
   }
   .navLinks {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: auto;
-    flex-direction: column;
+    display: none;
   }
 
   .statsContainer {
