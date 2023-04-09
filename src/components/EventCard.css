@@ -98,6 +98,8 @@
 img {
   border-radius: 25px;
   margin-right: 25px;
+  margin-bottom: 7.5px;
+  align-self: center;
 }
 
 h1 {

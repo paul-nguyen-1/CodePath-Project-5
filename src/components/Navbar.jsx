@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import { Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
@@ -27,7 +27,14 @@ function Navbar({
   //   window.addEventListener("scroll", changeBackground);
   // }, []);
 
+  
+
   const [activeHamburger, setActiveHamburger] = useState(true);
+
+  useEffect(() => {
+    if (!activeHamburger) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "visible";
+  }, [activeHamburger]);
 
   const handleHamburger = () => {
     setActiveHamburger(!activeHamburger);
