@@ -563,7 +563,7 @@ a.items:hover {
 .contactHeaders {
   color: black;
   text-align: center;
-  padding: 50px 0px;
+  padding: 25px 0px;
   line-height: 15px;
 }
 
@@ -581,7 +581,7 @@ a.items:hover {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  margin: 10px 50px;
+  margin: 15px 50px;
 }
 
 .contactCard {

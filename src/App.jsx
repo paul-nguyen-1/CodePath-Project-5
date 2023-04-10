@@ -59,6 +59,7 @@ function App() {
       setList(json.events);
     };
     fetchAllEvents().catch(console.error);
+    window.scrollTo(0, 0);
   }, [SCORE_EVENT, lowestTicket, city, search, currentPage, postPerPage]);
 
   //No Scroll when overlay is on
@@ -170,7 +171,7 @@ function App() {
     setCurrentPage(Math.ceil(selected + 1));
   };
 
-  const totalPages = meta && Math.ceil(meta.total / 10);
+  const totalPages = meta && Math.ceil(meta.total / postPerPage);
 
   //Selecting date and popularity asc/desc
   const handleOptionChange = (value) => {
@@ -279,7 +280,7 @@ function App() {
           </div>
           <div className="sort">
             <p style={{ cursor: "pointer" }} onClick={handleSorting}>
-               {sorting ? '↑↓' : '↓↑'}
+              {sorting ? "↑↓" : "↓↑"}
             </p>
             <select
               style={{
