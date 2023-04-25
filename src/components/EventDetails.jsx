@@ -23,6 +23,7 @@ function EventDetails() {
       );
       const json = await recommendations.json();
       // console.log(json);
+      // console.log(json.recommendations)
       setEventInfo(json.recommendations);
     };
     searchEvents().catch(console.error);

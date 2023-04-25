@@ -1,24 +1,5 @@
 # NeetSeat
 
-## Features
-
-The following functionality is completed:
-
-- [x] **The app includes at least one unique chart developed using the fetched data that tell an interesting story**
-- [x] **Clicking on an item in the list view displays more details about it**
-- [x] **Clicking on an item has a direct, unique link to that item's detail view page**
-- [x] The site's customized dashboard contains more content that explains what is interesting about the data
-- [x] The site allows users to toggle between different data visualizations
-
-## Video Walkthrough
-
-Here's a walkthrough of implemented user stories:
-GIF created with [Kap](https://getkap.co/) for macOS
-
-![](webdemo.gif)
-
-
-
 ## License
 
     Copyright [2023] [Paul Nguyen]
