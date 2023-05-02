@@ -30,7 +30,6 @@ function EventDetails() {
       const response = await fetch(`${BASE_URL}${API_CLIENT}${API_KEY}`);
       const json = await response.json();
       setPerformance(json.events[0]);
-      // console.log(json)
       // console.log(json.events[0]);
     };
     searchEvents().catch(console.error);
@@ -87,8 +86,8 @@ function EventDetails() {
         src={performance && performance.performers[0].image}
         alt={performance && performance.title}
         description={performance && performance.description}
-        location={performance && performance.address}
-        exact_address={performance && performance.extended_address}
+        location={performance && performance.venue.address}
+        exact_address={performance && performance.venue.extended_address}
         listing_count={
           performance && performance.stats.listing_count.toLocaleString()
         }

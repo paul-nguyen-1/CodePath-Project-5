@@ -22,7 +22,7 @@ function SingleChart({ id, postal_code, index }) {
     const getEventData = async () => {
       const data = await fetch(`${EVENT_URL}${API_CLIENT}${API_KEY}`);
       const json = await data.json();
-      console.log(json.events[0]);
+      // console.log(json.events[0]);
       setEventData(json.events[0]);
     };
     getEventData().catch(console.error);

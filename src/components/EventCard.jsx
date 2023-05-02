@@ -24,7 +24,7 @@ function EventCard({
   return (
     <div className="card">
       <div className="cardContainer" style={{ color: "black" }}>
-        <h1 style={{fontSize:"32px"}}>Recommended Events</h1>
+        <h1 style={{ fontSize: "32px" }}>Recommended Events</h1>
         <div key={index}>
           <h2>{title}</h2>
           <h3>@ {venue}</h3>
@@ -39,7 +39,7 @@ function EventCard({
                 {description === "" ? "No Description Available." : description}
               </p>
               <p>
-                Exact Location: {location} {exact_address}{" "}
+                Location: {location} {exact_address}{" "}
               </p>
               <p>Listing Count: {listing_count} tickets</p>
               <p>Lowest Price: ${lowest_price}</p>

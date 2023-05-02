@@ -224,6 +224,13 @@ function App() {
     setSearch("");
   };
 
+  const cancelOverlay = () => {
+    setOverlay(false);
+    setCities(false);
+    setCategories(false);
+    setPricing(false);
+  };
+
   return (
     <div className="App">
       {
@@ -235,7 +242,11 @@ function App() {
           handleSearchEvent={handleSearchEvent}
         />
       }
-      {overlay && <div className="overlay"> </div>}
+      {overlay && (
+        <div className="overlay" onClick={cancelOverlay}>
+          {" "}
+        </div>
+      )}
       <div className="filterContainer">
         <button onClick={handleCategories}>Events</button>
         {categories && (

@@ -34,9 +34,8 @@ function Event({
               Description:{" "}
               {description === "" ? "No Description Available." : description}
             </p>
-            <p>{location}</p>
             <p>
-              Exact Location: {location} {exact_address}{" "}
+              Location: {location} {exact_address}{" "}
             </p>
             <p>Listing Count: {listing_count} tickets</p>
             <p>Lowest Price: ${lowest_price}</p>
