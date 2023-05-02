@@ -27,7 +27,7 @@ function EventCard({
         <h1 style={{fontSize:"32px"}}>Recommended Events</h1>
         <div key={index}>
           <h2>{title}</h2>
-          <h3>Venue: {venue}</h3>
+          <h3>@ {venue}</h3>
           <h4>Date: {date}</h4>
           <div className="miscContainer">
             <div>

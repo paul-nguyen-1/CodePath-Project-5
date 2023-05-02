@@ -1,0 +1,24 @@
+.event {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.eventHeader {
+  text-align: center;
+  font-size: 14px;
+}
+
+.eventsContainer {
+  width: 85%;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column wrap;
+  text-align: center;
+  align-items: center;
+  background-color: rgba(230, 230, 230, 0.141);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.273);
+  padding: 25px;
+}

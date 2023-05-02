@@ -9,22 +9,24 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "../App.css";
+import { useParams } from "react-router-dom";
 
-function EventChart({ id, postal_code, index }) {
-  const RECOMMENDATION_URL = `https://api.seatgeek.com/2/recommendations?performers.id=${id}&postal_code=${postal_code}&`;
+function SingleChart({ id, postal_code, index }) {
+  let params = useParams();
+  const EVENT_URL = `https://api.seatgeek.com/2/events?id=${params.id}&postal_code=${params.postal_code}&`;
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_CLIENT = import.meta.env.VITE_API_CLIENT;
   const [eventData, setEventData] = useState(null);
 
   useEffect(() => {
     const getEventData = async () => {
-      const data = await fetch(`${RECOMMENDATION_URL}${API_CLIENT}${API_KEY}`);
+      const data = await fetch(`${EVENT_URL}${API_CLIENT}${API_KEY}`);
       const json = await data.json();
-      // console.log(json.recommendations[index]);
-      setEventData(json.recommendations);
+      console.log(json.events[0]);
+      setEventData(json.events[0]);
     };
     getEventData().catch(console.error);
-  }, [id, postal_code, index]);
+  }, [params.id, params.postal_code]);
 
   const colors = [
     "#0088FE",
@@ -39,25 +41,26 @@ function EventChart({ id, postal_code, index }) {
   const data = [
     {
       name: "Average Price",
-      value: eventData && eventData[index].event.stats.average_price,
+      value: eventData && eventData.stats.average_price,
     },
     {
       name: "Median Price",
-      value: eventData && eventData[index].event.stats.median_price,
+      value: eventData && eventData.stats.median_price,
     },
     {
       name: "Lowest Price",
-      value:
-        eventData &&
-        eventData[index].event.stats.lowest_sg_base_price_good_deals,
+      value: eventData && eventData.stats.lowest_sg_base_price,
     },
     {
       name: "Good Deal",
-      value: eventData && eventData[index].event.stats.lowest_price_good_deals,
+      value:
+        eventData && eventData.stats.lowest_price_good_deals
+          ? eventData && eventData.stats.lowest_price_good_deals
+          : eventData && eventData.stats.lowest_sg_base_price,
     },
     {
       name: "Listing Count",
-      value: eventData && eventData[index].event.stats.listing_count,
+      value: eventData && eventData.stats.listing_count,
     },
   ];
 
@@ -77,7 +80,7 @@ function EventChart({ id, postal_code, index }) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip label="name" labelStyle={{color:"#82ca9d"}} />
+          <Tooltip label="name" labelStyle={{ color: "#82ca9d" }} />
           <Line
             type="monotone"
             dataKey="value"
@@ -90,4 +93,4 @@ function EventChart({ id, postal_code, index }) {
   );
 }
 
-export default EventChart;
+export default SingleChart;
