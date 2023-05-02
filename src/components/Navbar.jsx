@@ -27,8 +27,6 @@ function Navbar({
   //   window.addEventListener("scroll", changeBackground);
   // }, []);
 
-  
-
   const [activeHamburger, setActiveHamburger] = useState(true);
 
   useEffect(() => {
@@ -84,19 +82,18 @@ function Navbar({
         </div>
       )}
       <div className={navbar ? "navLinksActive" : "navLinks"}>
-        {searchFilter && (
+        {/* {searchFilter && (
           <Input
             type="text"
             placeholder="Search for Events"
             onChange={handleSearchEvent}
           />
-        )}
-        <button
-          onClick={handleSearchClick}
-          style={{ backgroundColor: "white", color: "black" }}
-        >
-          🔍 Search
-        </button>
+        )} */}
+        <Link to="/">
+          <button style={{ backgroundColor: "white", color: "black" }}>
+            🏠 Home
+          </button>
+        </Link>
         <Link to="/about">
           <button style={{ backgroundColor: "white", color: "black" }}>
             ℹ️ About
@@ -104,7 +101,7 @@ function Navbar({
         </Link>
         <Link to="/contact">
           <button style={{ backgroundColor: "white", color: "black" }}>
-            🏠 Contact
+            📞 Contact
           </button>
         </Link>
       </div>

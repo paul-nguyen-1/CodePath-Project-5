@@ -23,7 +23,8 @@ function EventCard({
 
   return (
     <div className="card">
-      <div className="cardContainer" style={{color:"black"}}>
+      <div className="cardContainer" style={{ color: "black" }}>
+        <h1 style={{fontSize:"32px"}}>Recommended Events</h1>
         <div key={index}>
           <h2>{title}</h2>
           <h3>Venue: {venue}</h3>

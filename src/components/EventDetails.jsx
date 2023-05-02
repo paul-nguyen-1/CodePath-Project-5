@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EventCard from "./EventCard";
 import EventChart from "./EventChart";
+import Event from "./Event";
 
 function EventDetails() {
   //URL Variables
   let params = useParams();
   const RECOMMENDATION_URL = `https://api.seatgeek.com/2/recommendations?performers.id=${params.id}&postal_code=${params.postal_code}&`;
+  const EVENT_URL = `https://api.seatgeek.com/2/events?performers.id=${params.id}&postal_code=${params.postal_code}&`;
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_CLIENT = import.meta.env.VITE_API_CLIENT;
 
   const [eventInfo, setEventInfo] = useState(null);
+  const [event, setEvent] = useState(null);
   const [cardIndex, setCardIndex] = useState(0);
 
   const [invalidArrowLeft, setInvalidArrowLeft] = useState(true);
@@ -27,6 +30,16 @@ function EventDetails() {
       setEventInfo(json.recommendations);
     };
     searchEvents().catch(console.error);
+  }, [params.id, params.postal_code]);
+
+  useEffect(() => {
+    const searchEvent = async () => {
+      const event = await fetch(`${EVENT_URL}${API_CLIENT}${API_KEY}`);
+      const json = await event.json();
+      setEvent(json.event);
+      console.log(json);
+    };
+    searchEvent().catch(console.error);
   }, [params.id, params.postal_code]);
 
   const handleLeftArrowKey = () => {
@@ -52,6 +65,8 @@ function EventDetails() {
         postal_code={params.postal_code}
         index={cardIndex}
       />
+      {/* <Event /> */}
+
       {eventInfo && (
         <div>
           <EventCard
