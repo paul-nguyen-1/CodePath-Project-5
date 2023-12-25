@@ -4,6 +4,7 @@ import EventCard from "./EventCard";
 import EventChart from "./EventChart";
 import Event from "./Event";
 import SingleChart from "./SingleChart";
+import "./EventDetails.css";
 
 function EventDetails() {
   //URL Variables
@@ -20,6 +21,8 @@ function EventDetails() {
 
   const [invalidArrowLeft, setInvalidArrowLeft] = useState(true);
   const [invalidArrowRight, setInvalidArrowRight] = useState(false);
+
+  const [recommendedEvents, setRecommendedEvents] = useState(false);
 
   //URL Variables
   const BASE_URL = `https://api.seatgeek.com/2/events?id=${params.id}&postal_code=${params.postal_code}&`;
@@ -74,83 +77,105 @@ function EventDetails() {
       : setInvalidArrowLeft(false) && setInvalidArrowRight(false);
   };
 
+  const handleRecommendedEvents = () => {
+    setRecommendedEvents(!recommendedEvents);
+  };
+
   return (
     <div className="eventDetails">
-      <SingleChart />
-      <Event
-        title={performance && performance.title}
-        venue={performance && performance.venue.name}
-        date={new Date(
-          performance && performance.datetime_utc
-        ).toLocaleDateString()}
-        src={performance && performance.performers[0].image}
-        alt={performance && performance.title}
-        description={performance && performance.description}
-        location={performance && performance.venue.address}
-        exact_address={performance && performance.venue.extended_address}
-        listing_count={
-          performance && performance.stats.listing_count.toLocaleString()
-        }
-        lowest_price={
-          performance && performance.stats.lowest_sg_base_price.toLocaleString()
-        }
-        average_price={
-          performance && performance.stats.average_price.toLocaleString()
-        }
-        highest_price={
-          performance && performance.stats.highest_price.toLocaleString()
-        }
-        ticket_url={performance && performance.url}
-      />
-      <EventChart
-        id={params.id}
-        postal_code={params.postal_code}
-        index={cardIndex}
-      />
-      {eventInfo && (
-        <div>
-          <EventCard
-            title={eventInfo[cardIndex].event.title}
-            venue={eventInfo[cardIndex].event.venue.name}
-            date={new Date(
-              eventInfo[cardIndex].event.datetime_utc
-            ).toLocaleDateString()}
-            src={eventInfo[cardIndex].event.performers[0].image}
-            alt={eventInfo[cardIndex].event.title}
-            description={eventInfo[cardIndex].event.description}
-            location={eventInfo[cardIndex].event.venue.address}
-            exact_address={eventInfo[cardIndex].event.venue.extended_address}
-            listing_count={eventInfo[
-              cardIndex
-            ].event.stats.listing_count.toLocaleString()}
-            lowest_price={eventInfo[
-              cardIndex
-            ].event.stats.lowest_sg_base_price.toLocaleString()}
-            average_price={eventInfo[
-              cardIndex
-            ].event.stats.average_price.toLocaleString()}
-            highest_price={eventInfo[
-              cardIndex
-            ].event.stats.highest_price.toLocaleString()}
-            ticket_url={eventInfo[cardIndex].event.url}
+      <div className="recommendedContainer">
+        <button onClick={handleRecommendedEvents} className="recommendedButton">
+          {recommendedEvents ? "Recommended Events" : "Current Event"}
+        </button>
+      </div>
+
+      {recommendedEvents ? (
+        <>
+          <EventChart
+            id={params.id}
+            postal_code={params.postal_code}
             index={cardIndex}
           />
-        </div>
+          {eventInfo && (
+            <div>
+              <EventCard
+                title={eventInfo[cardIndex].event.title}
+                venue={eventInfo[cardIndex].event.venue.name}
+                date={new Date(
+                  eventInfo[cardIndex].event.datetime_utc
+                ).toLocaleDateString()}
+                src={eventInfo[cardIndex].event.performers[0].image}
+                alt={eventInfo[cardIndex].event.title}
+                description={eventInfo[cardIndex].event.description}
+                location={eventInfo[cardIndex].event.venue.address}
+                exact_address={
+                  eventInfo[cardIndex].event.venue.extended_address
+                }
+                listing_count={eventInfo[
+                  cardIndex
+                ].event.stats.listing_count.toLocaleString()}
+                lowest_price={eventInfo[
+                  cardIndex
+                ].event.stats.lowest_sg_base_price.toLocaleString()}
+                average_price={eventInfo[
+                  cardIndex
+                ].event.stats.average_price.toLocaleString()}
+                highest_price={eventInfo[
+                  cardIndex
+                ].event.stats.highest_price.toLocaleString()}
+                ticket_url={eventInfo[cardIndex].event.url}
+                index={cardIndex}
+              />
+            </div>
+          )}
+          <div className="arrow">
+            <div
+              onClick={handleLeftArrowKey}
+              className={invalidArrowLeft ? "invalidLeftArrow" : "leftArrowKey"}
+            >
+              ←
+            </div>
+            <div
+              onClick={handleRightArrowKey}
+              className={
+                invalidArrowRight ? "invalidRightArrow" : "rightArrowKey"
+              }
+            >
+              →
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <SingleChart />
+          <Event
+            title={performance && performance.title}
+            venue={performance && performance.venue.name}
+            date={new Date(
+              performance && performance.datetime_utc
+            ).toLocaleDateString()}
+            src={performance && performance.performers[0].image}
+            alt={performance && performance.title}
+            description={performance && performance.description}
+            location={performance && performance.venue.address}
+            exact_address={performance && performance.venue.extended_address}
+            listing_count={
+              performance && performance.stats.listing_count.toLocaleString()
+            }
+            lowest_price={
+              performance &&
+              performance.stats.lowest_sg_base_price.toLocaleString()
+            }
+            average_price={
+              performance && performance.stats.average_price.toLocaleString()
+            }
+            highest_price={
+              performance && performance.stats.highest_price.toLocaleString()
+            }
+            ticket_url={performance && performance.url}
+          />
+        </>
       )}
-      <div className="arrow">
-        <div
-          onClick={handleLeftArrowKey}
-          className={invalidArrowLeft ? "invalidLeftArrow" : "leftArrowKey"}
-        >
-          ←
-        </div>
-        <div
-          onClick={handleRightArrowKey}
-          className={invalidArrowRight ? "invalidRightArrow" : "rightArrowKey"}
-        >
-          →
-        </div>
-      </div>
     </div>
   );
 }

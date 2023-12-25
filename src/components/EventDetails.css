@@ -1,0 +1,10 @@
+.recommendedContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommendedButton{
+    margin-bottom: 10px;
+}
